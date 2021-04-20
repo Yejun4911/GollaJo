@@ -1,1 +1,1 @@
-[https://github.com/EncoreWebProject4/WebProject.wiki.git]
+https://github.com/EncoreWebProject4/WebProject.wiki.git
