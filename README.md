@@ -1,1 +1,1 @@
-https://github.com/EncoreWebProject4/WebProject.wiki.git
+# 회의록
