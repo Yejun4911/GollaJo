@@ -1,7 +1,0 @@
-INDEX VERSION 1.4+C:\encore_kjy\eclipse\GollaJo\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-3965525075.index
-3033981732.index
-3310406301.index
-2483094197.index
-533148413.index
-2887345982.index
