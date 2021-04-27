@@ -61,7 +61,7 @@
 		height: 100%;
 		display: flex;
 		align-items: center;
-		padding-left:10px;
+		padding-left:20px;
 	}
 	header ul > li > a{
 		font-family: 'Recipekorea';
@@ -85,7 +85,7 @@
 				<ul>
 				<c:choose>
 					<c:when test="${!empty vo}">
-						<li><a href="logout.jsp">로그아웃</a></li>
+						<li style="padding-left:100px;"><a href="logout.jsp">로그아웃</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a href="signIn.jsp">로그인</a></li>

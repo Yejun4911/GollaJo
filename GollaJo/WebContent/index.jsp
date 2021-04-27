@@ -35,8 +35,8 @@
 	<div class="wrapper">
     		<div><h2>음식메뉴 골라조</h2></div>
 	    	<div><h2>중간지점 골라조</h2></div>
-			<div><h2>골라조 버튼</h2></div>
-			<div><h2>골라조 게시판</h2></div>
+			<div><h2>골라조<br>버튼</h2></div>
+			<div><h2>골라조<br>게시판</h2></div>
 	</div>
 	<%@ include file="view/footer.jsp" %>
 	
