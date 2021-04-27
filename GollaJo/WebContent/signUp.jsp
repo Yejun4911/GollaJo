@@ -57,19 +57,101 @@ button:hover {
 }
 
 </style>
+<script type="text/javascript">
+	function pwd2Check() {
+		//비밀번호가 일치하지 않으면 페이지 이동 안되도록...
+		//메세지 띄워주고
+		var f = document.registerForm; // form name="registerForm"
+		if(f.pwd.value != f.pwd2.value){
+			alert("비밀번호가 일치하지 않습니다");
+			f.pwd2.value="";
+			f.pwd2.focus();
+			return false;
+		}
+	}
+
+	var xhr;
+	var resultView;
+	
+	function idCheck() {
+		var id = document.registerForm.id.value;
+		resultView = document.getElementById("idCheckResult");
+		if (id.length < 5 || id.length > 20) {
+			resultView.innerHTML = "<font color='red'> 아이디는 5~20 글자!!</font>";
+			return;
+		}
+		
+		// 4글자 이상이면 비동기통신으로 로직을 전개시킨다.
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = idCallback;
+		xhr.open("post", "idCheck.do", true)
+		xhr.setRequestHeader("Content-Type", 
+				"application/x-www-form-urlencoded;charset=utf-8");
+		xhr.send("id=" + id);
+	}
+	function idCallback() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var flag = xhr.responseText;
+			resultView = document.getElementById("idCheckResult");
+			if (flag == 'true')
+				resultView.innerHTML = "<font color='red'><b> 사용 불가!!</b></font>";
+			else
+				resultView.innerHTML = "<font color='green'><b> 사용 가능!!</b></font>";
+		}
+	}
+	
+	function nicknameCheck() {
+		var nickname = document.registerForm.nickname.value;
+		resultView = document.getElementById("nicknameCheckResult");
+		if (nickname.length < 2 || nickname.length > 10) {
+			resultView.innerHTML = "<font color='red'>닉네임은 2~10 글자!!</font>";
+			return;
+		}
+		
+		// 4글자 이상이면 비동기통신으로 로직을 전개시킨다.
+		xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = nicknameCallback;
+		xhr.open("post", "nicknameCheck.do", true)
+		xhr.setRequestHeader("Content-Type", 
+				"application/x-www-form-urlencoded;charset=utf-8");
+		xhr.send("nickname=" + nickname);
+	}
+	function nicknameCallback() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var flag = xhr.responseText;
+			resultView = document.getElementById("nicknameCheckResult");
+			if (flag == 'true')
+				resultView.innerHTML = "<font color='red'><b> 닉네임 사용 불가!!</b></font>";
+			else
+				resultView.innerHTML = "<font color='green'><b> 닉네임 사용 가능!!</b></font>";
+		}
+	}
+	
+	function pwdCheck() {
+		var pwd = document.registerForm.pwd.value;
+		resultView = document.getElementById("pwdCheckResult");
+		if (pwd.length < 8 || pwd.length > 20) {
+			resultView.innerHTML = "<font color='red'>비밀번호는 8~20 글자!!</font>";
+			return;
+		}else{
+			resultView.innerHTML = "<font color='green'>사용 가능 !</font>";
+			
+		}
+	}
+</script>
 <body>
 <%@ include file="view/header.jsp" %>
-<form action="signUp.do" method="post">
+<form action="signUp.do" method="post" name="registerForm" onsubmit="return pwd2Check()">
   <div class="content">
   	<h2>로그인</h2><hr>
-    <label for="아이디"><b>ID</b></label>
-    <input type="text" placeholder="아이디" name="id" required>
-    <label for="비밀번호"><b>PASSWORD</b></label>
-    <input type="password" placeholder="비밀번호" name="pwd" required>
-    <label for="비밀번호확인"><b>PASSWORD</b></label>
+    <label for="아이디"><b>아이디</b></label><span id="idCheckResult"></span>
+    <input type="text" placeholder="아이디" name="id" required onkeyup="idCheck()">
+    <label for="비밀번호"><b>비밀번호</b></label><span id="pwdCheckResult"></span>
+    <input type="password" placeholder="비밀번호" name="pwd" required onkeyup="pwdCheck()">
+    <label for="비밀번호확인"><b>비밀번호확인</b></label>
     <input type="password" placeholder="비밀번호확인" name="pwd2" required>
-    <label for="닉네임"><b>PASSWORD</b></label>
-    <input type="text" placeholder="닉네임" name="nickname" required>
+    <label for="닉네임"><b>닉네임</b></label><span id="nicknameCheckResult" ></span>
+    <input type="text" placeholder="닉네임" name="nickname" required onkeyup="nicknameCheck()">
     
     
     <div class="clearfix">
