@@ -19,6 +19,7 @@ public class SignUpController implements Controller {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");		
 		String nickname = request.getParameter("nickname");		
+		System.out.println(id+" "+pwd+ " "+nickname);
 		
 		try {
 			UsersDAOImpl.getInstance().signUp(id, pwd, nickname);

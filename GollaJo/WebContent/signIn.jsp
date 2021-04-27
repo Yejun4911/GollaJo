@@ -4,13 +4,13 @@
 <html>
 <style>
 @font-face {
-    src: url("fonts/Recipekorea.ttf"); 
-  	font-family: 'Recipekorea';
+    src: url("fonts/08SeoulNamsanM_0.ttf"); 
+  	font-family: "SeoulNamsanM";
 }
 
 * {
 	box-sizing: 100%;
-	font-family:Recipekorea;
+	font-family:"SeoulNamsanM";
 }
 input[type=text], input[type=password] {
   width: 100%;
@@ -59,13 +59,13 @@ button:hover {
 </style>
 <body>
 <%@ include file="view/header.jsp" %>
-<form action="/action_page.php">
+<form action="signIn.do" method="post">
   <div class="content">
   	<h2>로그인</h2><hr>
     <label for="아이디"><b>ID</b></label>
-    <input type="text" placeholder="ID" name="아이디" required>
+    <input type="text" placeholder="ID" name="id" required>
     <label for="비밀번호"><b>PASSWORD</b></label>
-    <input type="password" placeholder="PASSWORD" name="비밀번호" required>
+    <input type="password" placeholder="PASSWORD" name="pwd" required>
     <div class="clearfix">
       <button type="Login" class="signupbtn">로그인</button>
     </div>

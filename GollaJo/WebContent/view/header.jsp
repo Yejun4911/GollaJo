@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,15 +8,14 @@
 <title>Insert title here</title>
 <style type="text/css">
 	@font-face {
-    font-family: 'Recipekorea';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Recipekorea.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+   src: url("fonts/08SeoulNamsanL_0.ttf"); 
+  	font-family: "SeoulNamsanL";
 	}
+	
 	* {
 		margin:0;
 		padding:0;
-		font-family: 'Recipekorea';
+		font-family: "SeoulNamsanL";
 		box-sizing: border-box;
 	}
 	
@@ -28,6 +28,7 @@
 		text-decoration: none;
 		outline: none;
 	}
+	
 	header {
 		width:100%;
 		height:80px;
@@ -51,8 +52,8 @@
 	header ul {
 		width:100%;
 		height: 100%;
-	
 		display: flex;
+		font-weight: 900;
 	}
 	
 	header ul > li {
@@ -73,8 +74,6 @@
 		align-items: center;
 	}
 	
-
-	
 </style>	
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
@@ -84,8 +83,15 @@
 			<a href="index.jsp"><img src="image/logo.png" id="logo"></a>
 			<nav>
 				<ul>
-					<li><a href="signIn.jsp">로그인</a></li>
-					<li><a href="signUp.jsp">회원가입</a></li>
+				<c:choose>
+					<c:when test="${!empty vo}">
+						<li><a href="logout.jsp">로그아웃</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="signIn.jsp">로그인</a></li>
+						<li><a href="signUp.jsp">회원가입</a></li>
+					</c:otherwise>	
+				</c:choose>
 				</ul>			
 			</nav>
 		</header>

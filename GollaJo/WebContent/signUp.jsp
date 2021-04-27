@@ -4,13 +4,13 @@
 <html>
 <style type="text/css">
 @font-face {
-    src: url("fonts/Recipekorea.ttf"); 
-  	font-family: 'Recipekorea';
+    src: url("fonts/08SeoulNamsanM_0.ttf"); 
+  	font-family: "SeoulNamsanM";
 }
 
 * {
 	box-sizing: 100%;
-	font-family:Recipekorea;
+	font-family:"SeoulNamsanM";
 }
 
 input[type=text], input[type=password] {
@@ -54,22 +54,22 @@ button:hover {
 </style>
 <body>
 <%@ include file="view/header.jsp" %>
-<form action="#" style="border:1px solid #ccc">
+<form action="signUp.do" method="post" style="border:1px solid #ccc">
   <div class="content">
     <h1>회원가입</h1>
     <hr>
 
     <label for="아이디"><b>아이디</b></label>
-    <input type="text" placeholder="ID" name="아이디" required>
+    <input type="text" placeholder="ID" name="id" required>
 
     <label for="비밀번호"><b>비밀번호</b></label>
-    <input type="password" placeholder="PASSWORD" name="비밀번호" required>
+    <input type="password" placeholder="PASSWORD" name="pwd" required>
 
     <label for="비밀번호 확인"><b>비밀번호 확인</b></label>
-    <input type="password" placeholder="PASSWORD" name="비밀번호 확인" required>
+    <input type="password" placeholder="PASSWORD" name="pwd2" required>
     
     <label for="닉네임"><b>닉네임</b></label>
-    <input type="text" placeholder="NICKNAME" name="닉네임" required>
+    <input type="text" placeholder="NICKNAME" name="nickname" required>
 
     <div class="clearfix">
       <button type="회원가입" class="signupbtn">회원가입</button>
