@@ -3,6 +3,7 @@
 
 ### Eclipse ###
 .metadata
+Servers/
 bin/
 tmp/
 *.tmp
@@ -95,5 +96,4 @@ hs_err_pid*
 ### Java-Web ###
 ## ignoring target file
 target/
-/Servers/
 # End of https://www.toptal.com/developers/gitignore/api/eclipse,java,java-web
