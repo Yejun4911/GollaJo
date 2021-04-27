@@ -62,6 +62,7 @@
 		display: flex;
 		align-items: center;
 		padding-left:20px;
+		
 	}
 	header ul > li > a{
 		font-family: 'Recipekorea';
@@ -76,6 +77,12 @@
 	
 </style>	
 <link rel="stylesheet" type="text/css" href="../css/style.css">
+<script type="javascript">
+	function logout(){
+		session.invalidate();
+	} 
+
+</script>
 </head>
 <body>
 <div class="container">
@@ -85,7 +92,7 @@
 				<ul>
 				<c:choose>
 					<c:when test="${!empty vo}">
-						<li style="padding-left:100px;"><a href="logout.jsp">로그아웃</a></li>
+						<li style="padding-left:100px;"><a href="iogout.do">로그아웃</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a href="signIn.jsp">로그인</a></li>

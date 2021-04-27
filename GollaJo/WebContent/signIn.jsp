@@ -70,6 +70,10 @@ button:hover {
       <button type="Login" class="signupbtn">로그인</button>
     </div>
   </div>
+  <c:if test="${msg eq 'false'}">
+	<script>alert("로그인에 실패하였습니다.");</script>   
+   </c:if>
+
 </form>
 <%@ include file="view/footer.jsp" %>
 </body>

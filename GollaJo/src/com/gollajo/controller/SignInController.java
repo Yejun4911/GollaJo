@@ -15,8 +15,8 @@ public class SignInController implements Controller {
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, Exception {
-		String path = "error.jsp";
-		String errMsg = "Sign In Fail...";
+		String path = "signIn.jsp";
+		String errMsg = "false";
 		
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
@@ -29,6 +29,8 @@ public class SignInController implements Controller {
 			if (rvo != null) {
 				session.setAttribute("vo", rvo);
 				path = "index.jsp";
+			}else {
+				request.setAttribute("msg", errMsg);
 			}
 		} catch (SQLException e) {
 			request.setAttribute("msg", errMsg);
