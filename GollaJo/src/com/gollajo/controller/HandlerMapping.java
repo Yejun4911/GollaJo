@@ -24,7 +24,7 @@ public class HandlerMapping {
 		} else if (command.equals("signIn.do")) {
 			controller = new SignInController();
 			System.out.println("<<<< SignInController Creating >>>>");
-		} else if(command.equals("iogout.do")) {
+		} else if(command.equals("logout.do")) {
 			controller = new LogoutController();
 		}
 		
