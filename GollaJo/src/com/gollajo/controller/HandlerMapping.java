@@ -24,8 +24,14 @@ public class HandlerMapping {
 		} else if (command.equals("signIn.do")) {
 			controller = new SignInController();
 			System.out.println("<<<< SignInController Creating >>>>");
-		} else if(command.equals("logout.do")) {
+		} else if (command.equals("logout.do")) {
 			controller = new LogoutController();
+		} else if (command.equals("boardList.do")) {
+			controller = new BoardListController();
+		} else if (command.equals("boardDetail.do")) {
+			controller = new BoardDetailController();
+		} else if (command.equals("boardUpdate.do")) {
+			controller = new BoardUpdateController();
 		}
 		
 		return controller;

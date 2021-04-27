@@ -1,7 +1,5 @@
 package com.gollajo.model;
 
-import java.util.Date;
-
 public class Boards {
 	private int boardIdx;
 	private int userIdx;
@@ -9,13 +7,11 @@ public class Boards {
 	private String question;
 	private String answer1;
 	private String answer2;
-	private Date registerDate;
-	private Date modifyDate;
+	private int viewCount;
+	private String registerDatetime;
+	private String modifyDatetime;
 	public int getBoardIdx() {
 		return boardIdx;
-	}
-	public void setBoardIdx(int boardIdx) {
-		this.boardIdx = boardIdx;
 	}
 	public int getUserIdx() {
 		return userIdx;
@@ -47,20 +43,29 @@ public class Boards {
 	public void setAnswer2(String answer2) {
 		this.answer2 = answer2;
 	}
-	public Date getRegisterDate() {
-		return registerDate;
+	public int getViewCount() {
+		return viewCount;
 	}
-	public void setRegisterDate(Date registerDate) {
-		this.registerDate = registerDate;
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
 	}
-	public Date getModifyDate() {
-		return modifyDate;
+	public String getRegisterDatetime() {
+		return registerDatetime;
 	}
-	public void setModifyDate(Date modifyDate) {
-		this.modifyDate = modifyDate;
+	public void setRegisterDatetime(String registerDatetime) {
+		this.registerDatetime = registerDatetime;
+	}
+	public String getModifyDatetime() {
+		return modifyDatetime;
+	}
+	public void setModifyDatetime(String modifyDatetime) {
+		this.modifyDatetime = modifyDatetime;
+	}
+	public void setBoardIdx(int boardIdx) {
+		this.boardIdx = boardIdx;
 	}
 	public Boards(int boardIdx, int userIdx, String title, String question, String answer1, String answer2,
-			Date registerDate, Date modifyDate) {
+			int viewCount, String registerDatetime, String modifyDatetime) {
 		super();
 		this.boardIdx = boardIdx;
 		this.userIdx = userIdx;
@@ -68,17 +73,15 @@ public class Boards {
 		this.question = question;
 		this.answer1 = answer1;
 		this.answer2 = answer2;
-		this.registerDate = registerDate;
-		this.modifyDate = modifyDate;
+		this.viewCount = viewCount;
+		this.registerDatetime = registerDatetime;
+		this.modifyDatetime = modifyDatetime;
 	}
 	@Override
 	public String toString() {
 		return "Boards [boardIdx=" + boardIdx + ", userIdx=" + userIdx + ", title=" + title + ", question=" + question
-				+ ", answer1=" + answer1 + ", answer2=" + answer2 + ", registerDate=" + registerDate + ", modifyDate="
-				+ modifyDate + "]";
+				+ ", answer1=" + answer1 + ", answer2=" + answer2 + ", viewCount=" + viewCount + ", registerDatetime="
+				+ registerDatetime + ", modifyDatetime=" + modifyDatetime + "]";
 	}
-
-	
-	
 	
 }
