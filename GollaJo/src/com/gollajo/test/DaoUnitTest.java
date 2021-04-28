@@ -5,7 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import com.gollajo.model.Boards;
 import com.gollajo.model.Users;
 
 import config.ServerInfo;
@@ -124,9 +126,9 @@ public class DaoUnitTest {
 		return user;
 	}
 	
-	public static void main(String[] args)throws Exception {
-	      DaoUnitTest test = new DaoUnitTest();
-	      
+//	public static void main(String[] args)throws Exception {
+//	      DaoUnitTest test = new DaoUnitTest();
+//	      
 //	      System.out.println("=============================");
 //	      boolean flag = test.isExistId("aaaa");
 //	      System.out.println(flag);
@@ -141,7 +143,175 @@ public class DaoUnitTest {
 //	      System.out.println("=============================");
 //	      Users user = test.signIn("cccc", "9101");
 //	      System.out.println(user);
+//	}
+
+	public ArrayList<Boards> showBoardList(int page) throws SQLException {
+		ArrayList<Boards> boardList = new ArrayList<Boards>();
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT board_idx, user_idx, title, question, answer1, answer2, view_count, register_datetime, modify_datetime FROM boards LIMIT ?, 10";
+			ps = conn.prepareStatement(query);
+			ps.setInt(1, (page - 1) * 10);
+			
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				boardList.add(new Boards(
+						rs.getInt("board_idx"),
+						rs.getInt("user_idx"),
+						rs.getString("title"),
+						rs.getString("question"),
+						rs.getString("answer1"),
+						rs.getString("answer2"),
+						rs.getInt("view_count"),
+						rs.getString("register_datetime"),
+						rs.getString("modify_datetime")
+						));
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return boardList;
 	}
 
+	public Boards showBoardByIdx(String boardIdx) throws SQLException {
+		Boards board = null;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			String query = "SELECT board_idx, user_idx, title, question, answer1, answer2, view_count, register_datetime, modify_datetime FROM boards WHERE board_idx=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, boardIdx);
+			
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				board = new Boards(
+						rs.getInt("board_idx"),
+						rs.getInt("user_idx"),
+						rs.getString("title"),
+						rs.getString("question"),
+						rs.getString("answer1"),
+						rs.getString("answer2"),
+						rs.getInt("view_count"),
+						rs.getString("register_datetime"),
+						rs.getString("modify_datetime")
+						);
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return board;
+	}
+
+	public void registerBoard(String userIdx, String title, String question, String answer1, String answer2)
+			throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			conn = getConnection();
+			String query = "INSERT INTO boards (user_idx, title, question, answer1, answer2, register_datetime, modify_datetime) VALUES (?, ?, ?, ?, ?, now(), now())";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, userIdx);
+			ps.setString(2, title);
+			ps.setString(3, question);
+			ps.setString(4, answer1);
+			ps.setString(5, answer2);
+			
+			System.out.println(ps.executeUpdate()+" row INSERT OK!!");
+		} finally {
+			closeAll(ps, conn);
+		}
+	}
+
+	public void deleteBoard(String boardIdx) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			conn = getConnection();
+			String query = "DELETE FROM boards WHERE board_idx=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, boardIdx);
+			
+			System.out.println(ps.executeUpdate()+" row DELETE OK!!");
+		} finally {
+			closeAll(ps, conn);
+		}
+	}
+
+	public void updateBoard(String boardIdx, String title, String question, String answer1, String answer2)
+			throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			conn = getConnection();
+			String query = "UPDATE boards SET title=?, question=?, answer1=?, answer2=?, modify_datetime=now() WHERE board_idx=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, title);
+			ps.setString(2, question);
+			ps.setString(3, answer1);
+			ps.setString(4, answer2);
+			ps.setString(5, boardIdx);
+			
+			System.out.println(ps.executeUpdate()+" row UPDATE OK!!");
+		} finally {
+			closeAll(ps, conn);
+		}
+	}
 	
+	public int getBoardCount() 
+			throws SQLException {
+		int boardCount = 0;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT COUNT(board_idx) AS board_count FROM boards;";
+			ps = conn.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			if (rs.next()) boardCount = rs.getInt("board_count");
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return boardCount;
+	}
+	
+//	public static void main(String[] args)throws Exception {
+//		DaoUnitTest test = new DaoUnitTest();
+//		
+//		ArrayList<Boards> list = test.showBoardList(1);
+//		System.out.println(list);
+//		
+//		Boards board = test.showBoardByIdx("1");
+//		System.out.println(board);
+//		
+//		test.registerBoard("2", "Title", "Question", "answer1", "answer2");
+//		ArrayList<Boards> list2 = test.showBoardList(2);
+//		System.out.println(list2);
+//		
+//		test.deleteBoard("1");
+//		ArrayList<Boards> list3 = test.showBoardList(1);
+//		System.out.println(list3);
+//		
+//		test.updateBoard("2", "목제", "용내", "1답응", "2답응");
+//		Boards board2 = test.showBoardByIdx("2");
+//		System.out.println(board2);
+//		int boardCount = test.getBoardCount();
+//		System.out.println(boardCount);
+//	}
 }

@@ -42,16 +42,17 @@ public class BoardsDAOImpl implements BoardsDAO {
 	}
 
 	@Override
-	public ArrayList<Boards> showBoardList() throws SQLException {
-		ArrayList<Boards> boardList = null;
+	public ArrayList<Boards> showBoardList(int page) throws SQLException {
+		ArrayList<Boards> boardList = new ArrayList<Boards>();
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			String query = "SELECT board_idx, user_idx, title, question, answer1, answer2, view_count, register_datetime, modify_datetime FROM boards";
+			String query = "SELECT board_idx, user_idx, title, question, answer1, answer2, view_count, register_datetime, modify_datetime FROM boards LIMIT ?, 10";
 			ps = conn.prepareStatement(query);
+			ps.setInt(1, (page - 1) * 10);
 			
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -117,7 +118,7 @@ public class BoardsDAOImpl implements BoardsDAO {
 
 		try {
 			conn = getConnection();
-			String query = "INSERT INTO boards (user_idx, title, question, answer1, answer2) VALUES (?, ?, ?, ?, ?)";
+			String query = "INSERT INTO boards (user_idx, title, question, answer1, answer2, register_datetime, modify_datetime) VALUES (?, ?, ?, ?, ?, now(), now())";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, userIdx);
 			ps.setString(2, title);
@@ -156,7 +157,7 @@ public class BoardsDAOImpl implements BoardsDAO {
 
 		try {
 			conn = getConnection();
-			String query = "UPDATE boards SET title=?, question=?, answer1=?, answer2=? WHERE board_idx=?";
+			String query = "UPDATE boards SET title=?, question=?, answer1=?, answer2=?, modify_datetime=now() WHERE board_idx=?";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, title);
 			ps.setString(2, question);
@@ -168,6 +169,28 @@ public class BoardsDAOImpl implements BoardsDAO {
 		} finally {
 			closeAll(ps, conn);
 		}
+	}
+	
+	@Override
+	public int getBoardCount() 
+			throws SQLException {
+		int boardCount = 0;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT COUNT(board_idx) AS board_count FROM boards;";
+			ps = conn.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			if (rs.next()) boardCount = rs.getInt("board_count");
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return boardCount;
 	}
 
 }

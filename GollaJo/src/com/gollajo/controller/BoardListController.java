@@ -18,9 +18,13 @@ public class BoardListController implements Controller {
 		String path = "index.jsp";
 		String errMsg = "false";
 		
+		int page = Integer.parseInt(request.getParameter("page"));
+		
 		try {
-			ArrayList<Boards> boardList = BoardsDAOImpl.getInstance().showBoardList();
+			ArrayList<Boards> boardList = BoardsDAOImpl.getInstance().showBoardList(page);
+			int boardCount = BoardsDAOImpl.getInstance().getBoardCount();
 			request.setAttribute("boardList", boardList);
+			request.setAttribute("pageCount", boardCount / 10 + 1);
 			path = "board_list.jsp";
 		} catch (SQLException e) {
 			request.setAttribute("msg", errMsg);
