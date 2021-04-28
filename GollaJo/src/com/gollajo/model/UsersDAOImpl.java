@@ -97,9 +97,7 @@ public class UsersDAOImpl implements UsersDAO {
 			ps.setString(3, nickname);
 
 			System.out.println(ps.executeUpdate()+" row INSERT OK!!");
-		}catch (SQLException e){
-			e.printStackTrace();
-		}finally {
+		} finally {
 			closeAll(ps, conn);
 		}
 	}

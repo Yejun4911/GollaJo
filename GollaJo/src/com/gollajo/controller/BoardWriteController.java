@@ -6,26 +6,28 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.gollajo.model.Boards;
 import com.gollajo.model.BoardsDAOImpl;
-import com.gollajo.model.UsersDAOImpl;
 
-public class BoardUpdateController implements Controller {
+public class BoardWriteController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, Exception {
-		String path = "boardWrite.do";
+		String path = "boardDetail.do";
 		String errMsg = "false";
 		
-		String board_idx = request.getParameter("board_idx");
-		String title = request.getParameter("title");		
-		String question = request.getParameter("question");		
-		String answer1 = request.getParameter("answer1");		
-		String answer2 = request.getParameter("answer2");
+		String boardIdx = request.getParameter("board_idx");
 		
 		try {
-			BoardsDAOImpl.getInstance().updateBoard(board_idx, title, question, answer1, answer2);
-			path = "boardDetail.do";
+			Boards board = BoardsDAOImpl.getInstance().showBoardByIdx(boardIdx);
+			
+			if (board != null) {
+				request.setAttribute("board", board);
+				path = "board_write.jsp";
+			}else {
+				request.setAttribute("msg", errMsg);
+			}
 		} catch (SQLException e) {
 			request.setAttribute("msg", errMsg);
 		}

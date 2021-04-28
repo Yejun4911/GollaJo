@@ -30,9 +30,15 @@ public class HandlerMapping {
 			controller = new BoardListController();
 		} else if (command.equals("boardDetail.do")) {
 			controller = new BoardDetailController();
+		} else if (command.equals("boardWrite.do")) {
+			controller = new BoardWriteController();
 		} else if (command.equals("boardUpdate.do")) {
 			controller = new BoardUpdateController();
-		}
+		} else if (command.equals("boardRegister.do")) {
+			controller = new BoardRegisterController();
+		} else if (command.equals("boardDelete.do")) {
+			controller = new BoardDeleteController();
+		} 
 		
 		return controller;
 	}

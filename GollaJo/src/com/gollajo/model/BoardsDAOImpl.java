@@ -75,7 +75,7 @@ public class BoardsDAOImpl implements BoardsDAO {
 	}
 
 	@Override
-	public Boards showBoardByIdx(String board_idx) throws SQLException {
+	public Boards showBoardByIdx(String boardIdx) throws SQLException {
 		Boards board = null;
 		
 		Connection conn = null;
@@ -86,7 +86,7 @@ public class BoardsDAOImpl implements BoardsDAO {
 			conn = getConnection();
 			String query = "SELECT board_idx, user_idx, title, question, answer1, answer2, view_count, register_datetime, modify_datetime FROM boards WHERE board_idx=?";
 			ps = conn.prepareStatement(query);
-			ps.setString(1, board_idx);
+			ps.setString(1, boardIdx);
 			
 			rs = ps.executeQuery();
 			if (rs.next()) {
@@ -110,23 +110,64 @@ public class BoardsDAOImpl implements BoardsDAO {
 	}
 
 	@Override
-	public void registerBoard(int userIdx, String title, String question, String answer1, String answer2)
+	public void registerBoard(String userIdx, String title, String question, String answer1, String answer2)
 			throws SQLException {
-		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement ps = null;
 
+		try {
+			conn = getConnection();
+			String query = "INSERT INTO boards (user_idx, title, question, answer1, answer2) VALUES (?, ?, ?, ?, ?)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, userIdx);
+			ps.setString(2, title);
+			ps.setString(3, question);
+			ps.setString(4, answer1);
+			ps.setString(5, answer2);
+			
+			System.out.println(ps.executeUpdate()+" row INSERT OK!!");
+		} finally {
+			closeAll(ps, conn);
+		}
 	}
 
 	@Override
-	public void deleteBoard(String board_idx) throws SQLException {
-		// TODO Auto-generated method stub
+	public void deleteBoard(String boardIdx) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
 
+		try {
+			conn = getConnection();
+			String query = "DELETE FROM boards WHERE board_idx=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, boardIdx);
+			
+			System.out.println(ps.executeUpdate()+" row DELETE OK!!");
+		} finally {
+			closeAll(ps, conn);
+		}
 	}
 
 	@Override
-	public void updateBoard(String board_idx, String title, String question, String answer1, String answer2)
+	public void updateBoard(String boardIdx, String title, String question, String answer1, String answer2)
 			throws SQLException {
-		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement ps = null;
 
+		try {
+			conn = getConnection();
+			String query = "UPDATE boards SET title=?, question=?, answer1=?, answer2=? WHERE board_idx=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, title);
+			ps.setString(2, question);
+			ps.setString(3, answer1);
+			ps.setString(4, answer2);
+			ps.setString(5, boardIdx);
+			
+			System.out.println(ps.executeUpdate()+" row UPDATE OK!!");
+		} finally {
+			closeAll(ps, conn);
+		}
 	}
 
 }

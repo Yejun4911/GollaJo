@@ -13,9 +13,9 @@ public interface BoardsDAO {
 	void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException;
 	
 	ArrayList<Boards> showBoardList() throws SQLException;
-	Boards showBoardByIdx(String board_idx) throws SQLException;
-	void registerBoard(int userIdx, String title, String question, String answer1, String answer2) throws SQLException;
-	void deleteBoard(String board_idx) throws SQLException;
-	void updateBoard(String board_idx, String title, String question, String answer1, String answer2) throws SQLException;
+	Boards showBoardByIdx(String boardIdx) throws SQLException;
+	void registerBoard(String userIdx, String title, String question, String answer1, String answer2) throws SQLException;
+	void deleteBoard(String boardIdx) throws SQLException;
+	void updateBoard(String boardIdx, String title, String question, String answer1, String answer2) throws SQLException;
 	
 }
