@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.gollajo.model.Boards;
+import com.gollajo.model.BoardList;
 import com.gollajo.model.BoardsDAOImpl;
 
 public class BoardListController implements Controller {
@@ -21,7 +21,7 @@ public class BoardListController implements Controller {
 		int page = Integer.parseInt(request.getParameter("page"));
 		
 		try {
-			ArrayList<Boards> boardList = BoardsDAOImpl.getInstance().showBoardList(page);
+			ArrayList<BoardList> boardList = BoardsDAOImpl.getInstance().showBoardList(page);
 			int boardCount = BoardsDAOImpl.getInstance().getBoardCount();
 			request.setAttribute("boardList", boardList);
 			request.setAttribute("pageCount", boardCount / 10 + 1);

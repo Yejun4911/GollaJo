@@ -12,7 +12,7 @@ public interface BoardsDAO {
 	void closeAll(PreparedStatement ps, Connection conn) throws SQLException;
 	void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException;
 	
-	ArrayList<Boards> showBoardList(int page) throws SQLException;
+	ArrayList<BoardList> showBoardList(int page) throws SQLException;
 	Boards showBoardByIdx(String boardIdx) throws SQLException;
 	void registerBoard(String userIdx, String title, String question, String answer1, String answer2) throws SQLException;
 	void deleteBoard(String boardIdx) throws SQLException;
