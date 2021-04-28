@@ -72,8 +72,9 @@ input[type=button]{
 	<div class = "container">
 		<div class="choice">
 			<h1>오늘 뭐 먹지?</h1>
-			<input type ="button" name="taste" value="취향으로 선택" id="taste" onclick="">
-			<input type ="button" name="situation" value="상황으로 선택" id="situation" onclick="">
+			<input type ="button" name="taste" value="취향으로 선택" id="taste" onclick="location.href='tasteChoice.jsp?choice=1'">
+			<input type ="button" name="situation" value="상황으로 선택" id="situation" onclick="location.href='tasteChoice.jsp?choice=2'">
+			<input type ="button" name="random" value="아무거나 !" id="situation" onclick="location.href='foodMenu.do?choice=3'">
 		</div>
 	</div>
 	

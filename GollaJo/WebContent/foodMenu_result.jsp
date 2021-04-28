@@ -22,9 +22,7 @@ h1{
 	font-size: 40px;
 }	
 
-.container{
-	
-	
+.content{
 	width:400px;
 	height:400px;
 	line-height:500px;
@@ -48,34 +46,47 @@ input[type=button]{
 	border : none;	
 	font-size : 25px;
 	cursor: pointer;
+	margin:30px;
+	color:white;
 }
 
 #taste{
 	 background-color: red;
-	 margin-bottom: 20px;
-	 margin-top: 35px;
 }
 
 #situation{
 	 background-color: rgb(46, 204, 113);
-	 margin-top:20px;
-
-
-.class{
-	padding: auto auto;
+	 
+}
+#random{
+	backgroun-color:blue;
+}
+#reset{
+	width:150px;
+	height:50px;
+	border-radius: 5px;
+	border : none;	
+	font-size : 25px;
+	margin:30px;
+	color:white;
+	background-color:black;
 }
 
 </style>
+
 </head>
 <body>
-	
-	<div class = "container">
+<%@ include file="view/header.jsp" %>
+
+<form action="choice2.jsp">
+	<div class = "content">
 		<div class="choice">
-			<h1>당신의 취향은?</h1>
-			<input type ="button" name="taste" value="맵다" id="taste" onclick="location.href='tasteChoice2.jsp?choice=${param.choice}&taste1=맵다'">
-			<input type ="button" name="situation" value="안 맵다" id="situation" onclick="location.href='tasteChoice2.jsp?choice=${param.choice}&taste1=안맵다'">
+			<h1>완전 랜덤 !</h1>
+			<input type ="button" name="random" value="${name}" id="taste">
+			<input type ="button" name="reset" value="재선택" id="reset" onClick="window.location.reload()">
 		</div>
 	</div>
-	
+</form>	
+<%@ include file="view/footer.jsp" %>
 </body>
 </html>
