@@ -4,7 +4,7 @@ public class BoardList { // board_list.jsp에서 쓰는 vo
 	
 	private int boardIdx;
 	private String title;
-	private String userName;
+	private String nickname;
 	private String registerDatetime;
 	private int viewCount;
 	public int getBoardIdx() {
@@ -19,11 +19,11 @@ public class BoardList { // board_list.jsp에서 쓰는 vo
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getUserName() {
-		return userName;
+	public String getNickname() {
+		return nickname;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getRegisterDatetime() {
 		return registerDatetime;
@@ -37,17 +37,17 @@ public class BoardList { // board_list.jsp에서 쓰는 vo
 	public void setViewCount(int viewCount) {
 		this.viewCount = viewCount;
 	}
-	public BoardList(int boardIdx, String title, String userName, String registerDatetime, int viewCount) {
+	public BoardList(int boardIdx, String title, String nickname, String registerDatetime, int viewCount) {
 		super();
 		this.boardIdx = boardIdx;
 		this.title = title;
-		this.userName = userName;
+		this.nickname = nickname;
 		this.registerDatetime = registerDatetime;
 		this.viewCount = viewCount;
 	}
 	@Override
 	public String toString() {
-		return "BoardList [boardIdx=" + boardIdx + ", title=" + title + ", userName=" + userName + ", registerDatetime="
+		return "BoardList [boardIdx=" + boardIdx + ", title=" + title + ", nickname=" + nickname + ", registerDatetime="
 				+ registerDatetime + ", viewCount=" + viewCount + "]";
 	}
 	
