@@ -23,6 +23,7 @@ public class BoardListController implements Controller {
 		try {
 			ArrayList<BoardList> boardList = BoardsDAOImpl.getInstance().showBoardList(page);
 			int boardCount = BoardsDAOImpl.getInstance().getBoardCount();
+			request.setAttribute("page", page);
 			request.setAttribute("boardList", boardList);
 			request.setAttribute("pageCount", boardCount / 10 + 1);
 			path = "board_list.jsp";
