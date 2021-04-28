@@ -23,6 +23,8 @@ h1{
 }	
 
 .content{
+	
+	
 	width:400px;
 	height:400px;
 	line-height:500px;
@@ -41,12 +43,11 @@ h1{
 }
 input[type=button]{
 	width:300px;
-	height:80px;
+	height:100px;
 	border-radius: 5px;
 	border : none;	
 	font-size : 25px;
 	cursor: pointer;
-	
 }
 
 #taste{
@@ -58,29 +59,23 @@ input[type=button]{
 #situation{
 	 background-color: rgb(46, 204, 113);
 	 margin-top:20px;
-
+}
 
 .class{
 	padding: auto auto;
 }
 
 </style>
-
 </head>
 <body>
-<%@ include file="view/header.jsp" %>
+<%@ include file="view/header.jsp" %>	
 	<div class = "content">
-		
 		<div class="choice">
 			<h1>당신의 취향은?</h1>
-			<input type ="button" name="situation" value="비 오는 날" id="situation" onclick="location.href='foodMenu.do?choice=${param.choice}&situation=1'">
-			<input type ="button" name="situation" value="해장" id="situation" onclick="location.href='foodMenu.do?choice=${param.choice}&situation=2'">
-			<input type ="button" name="situation" value="점심" id="situation" onclick="location.href='foodMenu.do?choice=${param.choice}&situation=3'">
-			<input type ="button" name="situation" value="저녁" id="situation" onclick="location.href='foodMenu.do?choice=${param.choice}&situation=4'">
-			<input type ="button" name="situation" value="술자리" id="situation" onclick="location.href='foodMenu.do?choice=${param.choice}&situation=5'">
-			<input type ="button" name="situation" value="다이어트" id="situation" onclick="location.href='foodMenu.do?choice=${param.choice}&situation=6'">
+			<input type ="button" name="taste" value="차갑다" id="taste" onclick="location.href='food_taste3.jsp?choice=${param.choice}&taste1=${param.taste1}&taste2=차갑다'">
+			<input type ="button" name="situation" value="뜨겁다" id="situation" onclick="location.href='food_taste3.jsp?choice=${param.choice}&taste1=${param.taste1}&taste2=뜨겁다'">
 		</div>
 	</div>
-<%@ include file="view/footer.jsp" %>		
+<%@ include file="view/footer.jsp" %>	
 </body>
 </html>

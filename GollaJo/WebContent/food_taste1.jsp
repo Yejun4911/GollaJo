@@ -11,6 +11,7 @@
   	font-family: 'SeoulNamsan';
 }
 
+
 *{
 	box-sizing: border-box;
 	font-family: 'SeoulNamsan';
@@ -27,7 +28,7 @@ h1{
 	width:400px;
 	height:400px;
 	line-height:500px;
-	margin:auto auto;
+	margin:0 auto;
 	padding: auto auto;
 	text-align:center;
 	vertical-align:middle;
@@ -49,22 +50,16 @@ input[type=button]{
 	cursor: pointer;
 }
 
-#taste1{
+#taste{
 	 background-color: red;
 	 margin-bottom: 20px;
 	 margin-top: 35px;
 }
 
-#taste2{
+#situation{
 	 background-color: rgb(46, 204, 113);
-	 margin-bottom: 20px;
 	 margin-top:20px;
-}
 
-#taste3{
-	 background-color: rgb(241, 196, 15);
-	 margin-top:20px;
-}
 
 .class{
 	padding: auto auto;
@@ -73,16 +68,14 @@ input[type=button]{
 </style>
 </head>
 <body>
-<%@ include file="view/header.jsp" %>
-<div class = "content">
-	<div class="choice">
-	
-		<h1>취향을 골라조!</h1>
-		<input type ="button" name="taste1" value="선택지1" id="taste1" onclick="">
-		<input type ="button" name="taste2" value="선택지2" id="taste2" onclick="">
-		<input type ="button" name="taste3" value="선택지3" id="taste3" onclick="">
+<%@ include file="view/header.jsp" %>	
+	<div class = "content">
+		<div class="choice">
+			<h1>당신의 취향은?</h1>
+			<input type ="button" name="taste" value="맵다" id="taste" onclick="location.href='food_taste2.jsp?choice=${param.choice}&taste1=맵다'">
+			<input type ="button" name="situation" value="안 맵다" id="situation" onclick="location.href='food_taste2.jsp?choice=${param.choice}&taste1=안맵다'">
+		</div>
 	</div>
-</div>
-<%@ include file="view/footer.jsp" %>
+<%@ include file="view/footer.jsp" %>	
 </body>
 </html>
