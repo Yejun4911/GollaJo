@@ -68,14 +68,14 @@ input[type=button]{
 </style>
 </head>
 <body>
-	
-	<div class = "container">
+<%@ include file="view/header.jsp" %>	
+	<div class = "content">
 		<div class="choice">
 			<h1>당신의 취향은?</h1>
 			<input type ="button" name="taste" value="맵다" id="taste" onclick="location.href='tasteChoice2.jsp?choice=${param.choice}&taste1=맵다'">
 			<input type ="button" name="situation" value="안 맵다" id="situation" onclick="location.href='tasteChoice2.jsp?choice=${param.choice}&taste1=안맵다'">
 		</div>
 	</div>
-	
+<%@ include file="view/footer.jsp" %>	
 </body>
 </html>

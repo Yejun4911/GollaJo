@@ -22,9 +22,7 @@ h1{
 	font-size: 40px;
 }	
 
-.container{
-	
-	
+.content{
 	width:400px;
 	height:400px;
 	line-height:500px;
@@ -68,14 +66,14 @@ input[type=button]{
 </style>
 </head>
 <body>
-	
-	<div class = "container">
+<%@ include file="view/header.jsp" %>	
+	<div class = "content">
 		<div class="choice">
 			<h1>당신의 취향은?</h1>
-			<input type ="button" name="taste" value="국물" id="taste" onclick="location.href='tasteChoice3.jsp?taste1=${param.taste1}&taste2=${param.taste2}&taste3=국물'">
-			<input type ="button" name="situation" value="안 국물" id="situation" onclick="location.href='tasteChoice3.jsp?taste1=${param.taste1}&taste2=${param.taste2}&taste3=안국물'">
+			<input type ="button" name="taste" value="국물" id="taste" onclick="location.href='tasteChoice3.jsp?choice=${param.choice}&taste1=${param.taste1}&taste2=${param.taste2}&taste3=국물'">
+			<input type ="button" name="situation" value="안 국물" id="situation" onclick="location.href='tasteChoice3.jsp?choice=${param.choice}&taste1=${param.taste1}&taste2=${param.taste2}&taste3=안국물'">
 		</div>
 	</div>
-	
+<%@ include file="view/footer.jsp" %>	
 </body>
 </html>

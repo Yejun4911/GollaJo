@@ -78,8 +78,31 @@ public class FoodMenusDAOImpl implements FoodMenusDAO{
 
 	@Override
 	public ArrayList<String> situationMenu(String situation) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<String> foodList = new ArrayList<String>();
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			String query = "select f.name  from foods f, foods_cases fc, cases c where fc.food_idx=f.food_idx and fc.case_idx=c.case_idx and c.case=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, situation);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				foodList.add(rs.getString("name"));
+				System.out.println(rs.getString("name"));
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("실패");
+		}finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return foodList;
 	}
 
 	@Override

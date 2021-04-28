@@ -22,7 +22,7 @@ h1{
 	font-size: 40px;
 }	
 
-.container{
+.content{
 	
 	
 	width:400px;
@@ -48,35 +48,32 @@ input[type=button]{
 	border : none;	
 	font-size : 25px;
 	cursor: pointer;
+	margin : 30px;
 }
 
 #taste{
 	 background-color: red;
-	 margin-bottom: 20px;
-	 margin-top: 35px;
+	
 }
 
 #situation{
 	 background-color: rgb(46, 204, 113);
-	 margin-top:20px;
+	 
 }
 
-.class{
-	padding: auto auto;
-}
 
 </style>
 </head>
 <body>
-	
-	<div class = "container">
+	<%@ include file="view/header.jsp" %>
+	<div class = "content">
 		<div class="choice">
 			<h1>오늘 뭐 먹지?</h1>
 			<input type ="button" name="taste" value="취향으로 선택" id="taste" onclick="location.href='tasteChoice.jsp?choice=1'">
-			<input type ="button" name="situation" value="상황으로 선택" id="situation" onclick="location.href='tasteChoice.jsp?choice=2'">
-			<input type ="button" name="random" value="아무거나 !" id="situation" onclick="location.href='foodMenu.do?choice=3'">
+			<input type ="button" name="situation" value="상황으로 선택" id="situation" onclick="location.href='situationChoice.jsp?choice=2'">
+			<input type ="button" name="random" value="아무거나 !" id="random" onclick="location.href='foodMenu.do?choice=3'">
 		</div>
 	</div>
-	
+	<%@ include file="view/footer.jsp" %>
 </body>
 </html>
