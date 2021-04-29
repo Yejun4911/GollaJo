@@ -6,6 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+
+
 <title>Insert title here</title>
 <style>
 @font-face {
@@ -21,7 +24,8 @@
 }
 
 h1 {
-	padding : 100px;
+	font-size: 50px;
+	padding : 70px;
 	margin : 0 auto;
 }
 
@@ -40,11 +44,20 @@ h1 {
   
 .container-board table tr{
 	height: 40px;
-}
-
-.container-board table tr{
 	text-align: center;
 }
+
+.container-board table th{
+	border-top : 2px solid #D8D8D8;
+	border-bottom: 2px solid #D8D8D8;
+	background-color: #E6E6E6;
+}
+
+.container-board table td {
+	border-bottom: 2px solid #D8D8D8;
+	background-color: #FFFFFF;
+}
+
 
 .paging {
 	text-align: center;
@@ -89,31 +102,40 @@ h1 {
 </head>
 <body>
 <%@ include file="view/header.jsp" %>
-<form action='#'></form>
+<form action="boardList.do">
 <h1 align="center">골라조 게시판</h1>
-	<a href="board_write.jsp"><img id="write" src="image/write.png"></a>
+
+	<c:choose>
+		<c:when test="${!empty vo}">
+			<a href="board_write.jsp"><img id="write" src="image/write.png"></a>
+		</c:when>
+		<c:otherwise>
+			<a href="signIn.jsp"><img id="write" src="image/write.png"></a>
+		</c:otherwise>
+	</c:choose>
+	
 	<div class="container-board">
-		<table border="1" bgcolor="#ddddd">
-        <thead>
-        <tr>
-            <th align="center" width="5%"><b>번호</b></th>
-            <th align="center" width="50%"><b>제목</b></th>
-            <th align="center" width="15%"><b>작성자</b></th>
-            <th align="center" width="15%"><b>날짜</b></th>
-            <th align="center" width="15%"><b>조회수</b></th>
-        </tr>
-        </thead>
-		<tbody>
-			<c:forEach items="${boardList}" var="board">
-			<tr>
-				<td>${board.boardIdx}</td>
-				<td><a href="boardDetail.do?board_idx=${board.boardIdx}">${board.title}</a></td>
-				<td>${board.nickname}</td>
-				<td>${board.registerDatetime}</td>
-				<td>${board.viewCount}</td>
-			</tr>
-			</c:forEach>		
-		</tbody>
+		<table>
+        	<thead>
+        		<tr>
+         		   <th align="center" width="5%"><b>번호</b></th>
+         		   <th align="center" width="50%"><b>제목</b></th>
+        		   <th align="center" width="15%"><b>작성자</b></th>
+        		   <th align="center" width="15%"><b>날짜</b></th>
+            	   <th align="center" width="15%"><b>조회수</b></th>
+        	   </tr>
+       		</thead>
+			<tbody>
+				<c:forEach items="${boardList}" var="board">
+					<tr>
+						<td>${board.boardIdx}</td>
+						<td><a href="boardDetail.do?board_idx=${board.boardIdx}"><font color="black"><b>${board.title}</b></font></a></td>
+						<td>${board.nickname}</td>
+						<td>${board.registerDatetime}</td>
+						<td>${board.viewCount}</td>
+					</tr>
+				</c:forEach>		
+			</tbody>
 		</table>
 		<div class="paging">
 			<c:if test="${1 < page}">
@@ -141,5 +163,6 @@ h1 {
 
 		</div> 
 	</div>
+</form>	
 </body>
 </html>

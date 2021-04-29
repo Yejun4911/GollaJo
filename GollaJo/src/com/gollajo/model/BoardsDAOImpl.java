@@ -51,7 +51,7 @@ public class BoardsDAOImpl implements BoardsDAO {
 		try {
 			conn = getConnection();
 			
-			String query = "SELECT board_idx, title, nickname, register_datetime, view_count FROM boards LEFT JOIN users ON boards.user_idx=users.user_idx LIMIT ?, 10";
+			String query = "SELECT board_idx, title, nickname, register_datetime, view_count FROM boards LEFT JOIN users ON boards.user_idx=users.user_idx ORDER BY board_idx DESC LIMIT ?, 10";
 			ps = conn.prepareStatement(query);
 			ps.setInt(1, (page - 1) * 10);
 			
