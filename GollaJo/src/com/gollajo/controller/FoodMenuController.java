@@ -24,7 +24,13 @@ public class FoodMenuController implements Controller {
 			String taste2 = request.getParameter("taste2");
 			String taste3 = request.getParameter("taste3");	
 			System.out.println(taste1+" "+taste2+ " "+taste3);
-			
+			try {
+				ArrayList<String> list = FoodMenusDAOImpl.getInstance().tasteMenu(taste1, taste2, taste3);
+				request.setAttribute("list",list);
+			}catch(SQLException e) {
+				
+			}
+			path="taste_result.jsp";
 			
 		}else if(choice.equals("2")) {
 			String sitNum = request.getParameter("situation");

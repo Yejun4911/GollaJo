@@ -28,6 +28,7 @@ h1{
 	display:flex;
 	align-items: center;
 	justify-content: center;
+	margin-top:100px;
 }
 #piechart{
 	display:flex;
@@ -37,30 +38,68 @@ h1{
 
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+<script type="text/javascript">
+		
+		var find = false;
+		var item ="${param.confirm}";
+		var index;
+		var cnt;
+      	if(localStorage.length!=0){
+      		for(var i=0; i<localStorage.length; i++){
+      			k = localStorage.key(i);
+    			var value = JSON.parse(localStorage.getItem(k));
+      			if(value.menu==item){
+      				find=true;
+      				cnt = value.value 
+      				break;
+      			}
+           	}
+      	}
+      	if(find==false){
+      		index=localStorage.length+1;
+      		var obj={
+      			menu:item,
+      			value:1,
+      			
+      		};
 
-      function drawChart() {
+          	localStorage.setItem(index,JSON.stringify(obj));
+      	}else{
+      		obj = {
+      			menu:item,
+      			value:cnt+1,
+      		}
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
+          	localStorage.setItem(k,JSON.stringify(obj));
+      	}
+      	
+      	/*var obj2={
+      		menu:"",
+      		value:0,
+      	};*/
+      	
+      	
+	    google.charts.load('current', {'packages':['corechart']});
+	    google.charts.setOnLoadCallback(drawChart);
+	
+	    function drawChart() {
 
-        var options = {
-          title: '나의 음식 선택!'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
+	    	// 차트 데이터 설정
+	    	var data = new google.visualization.DataTable();
+	    	data.addColumn('string','메뉴');
+	    	data.addColumn('number','횟수');
+	    	for(var s=0; s<localStorage.length; s++){
+	      		k = localStorage.key(s);
+				value = JSON.parse(localStorage.getItem(k));
+				data.addRow([value.menu,value.value]);		      	
+	      	}
+	    	var options = {
+	    		title: '나의 음식 선택!'
+	    	};
+			var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+			chart.draw(data, options);
+	    }
+</script>
 </head>
 
 <body>

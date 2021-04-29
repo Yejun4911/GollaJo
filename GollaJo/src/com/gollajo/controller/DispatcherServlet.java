@@ -41,7 +41,7 @@ public class DispatcherServlet extends HttpServlet {
 		String path = "index.html";
 		ModelAndView mv = null;
 		
-		Controller controller   = HandlerMapping.getInstance().createController(command);
+		Controller controller = HandlerMapping.getInstance().createController(command);
 		
 		try {
 			mv = controller.execute(request, response);

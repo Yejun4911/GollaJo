@@ -44,7 +44,7 @@ public class FoodMenusDAOImpl implements FoodMenusDAO{
 
 	@Override
 	public ArrayList<String> tasteMenu(String taste1, String tasts2, String tasts3) throws SQLException {
-		ArrayList<Boards> foodList = null;
+ArrayList<String> foodList = new ArrayList<String>();
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -52,24 +52,20 @@ public class FoodMenusDAOImpl implements FoodMenusDAO{
 		
 		try {
 			conn = getConnection();
-			String query = "select*from ";
+			String query = "select f.name, count(*) from foods f, foods_tastes fc, tastes c where fc.food_idx=f.food_idx and fc.taste_idx = c.taste_idx and taste in(?,?,?) group by f.name having count(*) >=2 order by count(*) desc;";
 			ps = conn.prepareStatement(query);
-			
+			ps.setString(1, taste1);
+			ps.setString(2, tasts2);
+			ps.setString(3, tasts3);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				boardList.add(new Boards(
-						rs.getInt("board_idx"),
-						rs.getInt("user_idx"),
-						rs.getString("title"),
-						rs.getString("question"),
-						rs.getString("answer1"),
-						rs.getString("answer2"),
-						rs.getInt("view_count"),
-						rs.getString("register_datetime"),
-						rs.getString("modify_datetime")
-						));
+				foodList.add(rs.getString("name"));
 			}
-		} finally {
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("실패");
+		}finally {
 			closeAll(rs, ps, conn);
 		}
 		
