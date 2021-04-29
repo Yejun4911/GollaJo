@@ -71,7 +71,24 @@ public class BoardsDAOImpl implements BoardsDAO {
 		
 		return boardList;
 	}
+	
+	@Override
+	public void increaseViewCount(String boardIdx) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
 
+		try {
+			conn = getConnection();
+			String query = "UPDATE boards SET view_count=view_count+1 WHERE board_idx=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, boardIdx);
+			
+			System.out.println(ps.executeUpdate()+" row UPDATE OK!!");
+		} finally {
+			closeAll(ps, conn);
+		}
+	}
+	
 	@Override
 	public Boards showBoardByIdx(String boardIdx) throws SQLException {
 		Boards board = null;
@@ -211,6 +228,51 @@ public class BoardsDAOImpl implements BoardsDAO {
 		}
 		
 		return lastBoardIdx;
+	}
+
+	@Override
+	public int getAnswer1(String boardIdx)
+			throws SQLException {
+		int answer1 = 0;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT COUNT(vote) AS vote_count FROM board_votes WHERE board_idx=? AND vote=1";
+			ps = conn.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			if (rs.next()) answer1 = rs.getInt("vote_count");
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return answer1;
+	}
+	
+
+	@Override
+	public int getAnswer2(String boardIdx)
+			throws SQLException {
+		int answer2 = 0;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT COUNT(vote) AS vote_count FROM board_votes WHERE board_idx=? AND vote=1";
+			ps = conn.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			if (rs.next()) answer2 = rs.getInt("vote_count");
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return answer2;
 	}
 	
 }

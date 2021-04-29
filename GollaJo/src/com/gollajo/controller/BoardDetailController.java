@@ -20,10 +20,15 @@ public class BoardDetailController implements Controller {
 		String boardIdx = request.getParameter("board_idx");
 		
 		try {
+			BoardsDAOImpl.getInstance().increaseViewCount(boardIdx);
 			Boards board = BoardsDAOImpl.getInstance().showBoardByIdx(boardIdx);
+			int answer1 = BoardsDAOImpl.getInstance().getAnswer1(boardIdx);
+			int answer2 = BoardsDAOImpl.getInstance().getAnswer2(boardIdx);
 			
 			if (board != null) {
 				request.setAttribute("board", board);
+				request.setAttribute("answer1", answer1);
+				request.setAttribute("answer2", answer2);
 				path = "board_detail.jsp";
 			}else {
 				request.setAttribute("msg", errMsg);

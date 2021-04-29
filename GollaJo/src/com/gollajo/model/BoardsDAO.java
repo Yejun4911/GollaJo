@@ -13,10 +13,14 @@ public interface BoardsDAO {
 	void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException;
 	
 	ArrayList<BoardList> showBoardList(int page) throws SQLException;
+	void increaseViewCount(String boardIdx) throws SQLException;
 	Boards showBoardByIdx(String boardIdx) throws SQLException;
 	void registerBoard(String userIdx, String title, String question, String answer1, String answer2) throws SQLException;
 	void deleteBoard(String boardIdx) throws SQLException;
 	void updateBoard(String boardIdx, String title, String question, String answer1, String answer2) throws SQLException;
 	int getBoardCount() throws SQLException;
 	int getLastBoardIdx() throws SQLException;
+	int getAnswer1(String boardIdx) throws SQLException;
+	int getAnswer2(String boardIdx) throws SQLException;
+	
 }
