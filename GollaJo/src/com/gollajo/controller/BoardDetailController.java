@@ -24,11 +24,13 @@ public class BoardDetailController implements Controller {
 			Boards board = BoardsDAOImpl.getInstance().showBoardByIdx(boardIdx);
 			int answer1 = BoardsDAOImpl.getInstance().getAnswer1(boardIdx);
 			int answer2 = BoardsDAOImpl.getInstance().getAnswer2(boardIdx);
+			int percent1 = answer1 * 100 / (answer1 + answer2);
+			int percent2 = answer2 * 100 / (answer1 + answer2);
 			
 			if (board != null) {
 				request.setAttribute("board", board);
-				request.setAttribute("answer1", answer1);
-				request.setAttribute("answer2", answer2);
+				request.setAttribute("percent1", percent1);
+				request.setAttribute("percent2", percent2);
 				path = "board_detail.jsp";
 			}else {
 				request.setAttribute("msg", errMsg);
