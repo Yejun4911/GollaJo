@@ -91,7 +91,7 @@ h1 {
 <%@ include file="view/header.jsp" %>
 <form action='#'></form>
 <h1 align="center">골라조 게시판</h1>
-	<a href="#"><img id="write" src="image/write.png"></a>
+	<a href="board_write.jsp"><img id="write" src="image/write.png"></a>
 	<div class="container-board">
 		<table border="1" bgcolor="#ddddd">
         <thead>

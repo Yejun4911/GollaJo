@@ -24,12 +24,12 @@ public class BoardRegisterController implements Controller {
 		
 		try {
 			BoardsDAOImpl.getInstance().registerBoard(userIdx, title, question, answer1, answer2);
-			path = "boardList.do";
+			path = "boardList.do?page=1";
 		} catch (SQLException e) {
 			request.setAttribute("msg", errMsg);
 		}
 		
-		return new ModelAndView(path);
+		return new ModelAndView(path, true);
 	}
 
 }
