@@ -112,7 +112,6 @@ public class BoardsDAOImpl implements BoardsDAO {
 			throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
-
 		try {
 			conn = getConnection();
 			String query = "INSERT INTO boards (user_idx, title, question, answer1, answer2, register_datetime, modify_datetime) VALUES (?, ?, ?, ?, ?, now(), now())";
@@ -124,7 +123,9 @@ public class BoardsDAOImpl implements BoardsDAO {
 			ps.setString(5, answer2);
 			
 			System.out.println(ps.executeUpdate()+" row INSERT OK!!");
-		} finally {
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
 			closeAll(ps, conn);
 		}
 	}

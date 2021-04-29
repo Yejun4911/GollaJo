@@ -38,13 +38,13 @@ input[type=textarea]{
 body {
 	margin: 0px;
 }
-div {
+#content {
 	margin: 0 auto;
 	padding: 10px;
 	top:50%;
 	left:70%;
 	width:70%
-}
+} 
 .h {
 	box-sizing: content-box;
 }
@@ -73,7 +73,7 @@ div#wrapper {
 </style>
 <body>
 <%@ include file="view/header.jsp" %>
-<form action="boardRegister.do" method="post" style="border:1px soild #ccc">
+<form action="boardRegister.do" method="post" style="border:1px soild #ccc" id=content>
 		<input type="hidden" name="user_idx" value="${vo.userIdx}">
 
     	<div class="head-list">
@@ -95,7 +95,7 @@ div#wrapper {
             <c1>
                 <input type="button" name="answer1" maxlength="10" value="${board.answer1}" style="width: 200px"; required>
                 VS
-                <input type="button" name="answer2" maxlength="10" value="${board.answer1}" style="width: 200px"; required>
+                <input type="button" name="answer2" maxlength="10" value="${board.answer2}" style="width: 200px"; required>
             </c1>
     	</div>
 </form>

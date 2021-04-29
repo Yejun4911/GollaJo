@@ -96,11 +96,11 @@ function reresult() {
 	}else{
 		document.getElementById("situation").value="메뉴가 더 이상 없습니다.";
 		document.getElementById("reset1").value="처음으로";
-		document.getElementById("reset1").setAttribute("onClick", "location.href='food_case.jsp?choice=2'");
+		document.getElementById("reset1").setAttribute("onClick", "location.href='food_taste1.jsp?choice=1'");
 	}
 }
 function url(){
-	location.href="sit_real_result.jsp?confirm="+arr[0];
+	location.href="taste_real_result.jsp?confirm="+arr[0];
 }
 </script>
 </head>
@@ -111,7 +111,7 @@ function url(){
 <form action="choice2.jsp">
 	<div class = "content">
 		<div class="choice">
-			<h1>상황 !</h1>
+			<h1> 취향 !</h1>
 			<input type ="button" name="random" value="${list[0]}" id="situation"></input>
 			<input type ="button" name="reset" value="재선택" id="reset1" onclick="reresult();">
 			<input type ="button" name="confirm" value="선택" id="realresult" onclick="url();">

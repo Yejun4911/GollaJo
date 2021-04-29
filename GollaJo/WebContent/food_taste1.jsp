@@ -72,8 +72,8 @@ input[type=button]{
 	<div class = "content">
 		<div class="choice">
 			<h1>당신의 취향은?</h1>
-			<input type ="button" name="taste" value="맵다" id="taste" onclick="location.href='food_taste2.jsp?choice=${param.choice}&taste1=맵다'">
-			<input type ="button" name="situation" value="안 맵다" id="situation" onclick="location.href='food_taste2.jsp?choice=${param.choice}&taste1=안맵다'">
+			<input type ="button" name="taste" value="빨간 맛" id="taste" onclick="location.href='food_taste2.jsp?choice=${param.choice}&taste1=1'">
+			<input type ="button" name="situation" value="순한 맛" id="situation" onclick="location.href='food_taste2.jsp?choice=${param.choice}&taste1=2'">
 		</div>
 	</div>
 <%@ include file="view/footer.jsp" %>	

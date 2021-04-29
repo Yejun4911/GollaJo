@@ -29,39 +29,38 @@ h1{
 	margin:0 auto;
 	padding: auto auto;
 	text-align:center;
-	vertical-align:middle;
 }
 
 .choice{
 	margin-top:100px;
-	display:inline-block;
 	line-height:normal;
-	vertical-align:middle;
 	padding:auto auto;
 }
 input[type=button]{
 	width:300px;
-	height:100px;
+	height:300px;
+	border-radius: 200px;
+	border : none;	
+	font-size : 25px;
+	margin:30px;
+	color:white;
+	
+}
+
+#random{
+	background-color:rgb(231, 76, 60);
+}
+#reset{
+	width:150px;
+	height:50px;
 	border-radius: 5px;
 	border : none;	
 	font-size : 25px;
-	cursor: pointer;
 	margin:30px;
 	color:white;
+	background-color:black;
 }
-
-#taste{
-	 background-color: red;
-}
-
-#situation{
-	 background-color: rgb(46, 204, 113);
-	 
-}
-#random{
-	backgroun-color:blue;
-}
-#reset{
+#reset2{
 	width:150px;
 	height:50px;
 	border-radius: 5px;
@@ -82,8 +81,9 @@ input[type=button]{
 	<div class = "content">
 		<div class="choice">
 			<h1>완전 랜덤 !</h1>
-			<input type ="button" name="random" value="${name}" id="taste">
+			<input type ="button" name="random" value="${name}" id="random">
 			<input type ="button" name="reset" value="재선택" id="reset" onClick="window.location.reload()">
+			<input type ="button" name="reset" value="선택" id="reset2" onclick="location.href='random_real_result.jsp?confirm=${name}'">
 		</div>
 	</div>
 </form>	

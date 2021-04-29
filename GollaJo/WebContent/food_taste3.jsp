@@ -70,8 +70,8 @@ input[type=button]{
 	<div class = "content">
 		<div class="choice">
 			<h1>당신의 취향은?</h1>
-			<input type ="button" name="taste" value="국물" id="taste" onclick="location.href='food.do?choice=${param.choice}&taste1=${param.taste1}&taste2=${param.taste2}&taste3=국물'">
-			<input type ="button" name="situation" value="안 국물" id="situation" onclick="location.href='food.do?choice=${param.choice}&taste1=${param.taste1}&taste2=${param.taste2}&taste3=안국물'">
+			<input type ="button" name="taste" value="국물" id="taste" onclick="location.href='food.do?choice=${param.choice}&taste1=${param.taste1}&taste2=${param.taste2}&taste3=5'">
+			<input type ="button" name="situation" value="안 국물" id="situation" onclick="location.href='food.do?choice=${param.choice}&taste1=${param.taste1}&taste2=${param.taste2}&taste3=6'">
 		</div>
 	</div>
 <%@ include file="view/footer.jsp" %>	
