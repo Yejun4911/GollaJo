@@ -223,6 +223,8 @@ public class BoardsDAOImpl implements BoardsDAO {
 			
 			rs = ps.executeQuery();
 			if (rs.next()) lastBoardIdx = rs.getInt("board_idx");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} finally {
 			closeAll(rs, ps, conn);
 		}
@@ -242,6 +244,7 @@ public class BoardsDAOImpl implements BoardsDAO {
 			conn = getConnection();
 			String query = "SELECT COUNT(vote) AS vote_count FROM board_votes WHERE board_idx=? AND vote=1";
 			ps = conn.prepareStatement(query);
+			ps.setString(1, boardIdx);
 			
 			rs = ps.executeQuery();
 			if (rs.next()) answer1 = rs.getInt("vote_count");
@@ -265,6 +268,7 @@ public class BoardsDAOImpl implements BoardsDAO {
 			conn = getConnection();
 			String query = "SELECT COUNT(vote) AS vote_count FROM board_votes WHERE board_idx=? AND vote=1";
 			ps = conn.prepareStatement(query);
+			ps.setString(1, boardIdx);
 			
 			rs = ps.executeQuery();
 			if (rs.next()) answer2 = rs.getInt("vote_count");
