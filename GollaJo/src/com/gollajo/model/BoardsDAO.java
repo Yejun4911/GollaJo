@@ -18,5 +18,5 @@ public interface BoardsDAO {
 	void deleteBoard(String boardIdx) throws SQLException;
 	void updateBoard(String boardIdx, String title, String question, String answer1, String answer2) throws SQLException;
 	int getBoardCount() throws SQLException;
-	
+	int getLastBoardIdx() throws SQLException;
 }

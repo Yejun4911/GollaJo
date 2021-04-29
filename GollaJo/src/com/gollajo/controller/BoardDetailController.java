@@ -17,10 +17,10 @@ public class BoardDetailController implements Controller {
 		String path = "boardList.do";
 		String errMsg = "false";
 		
-		String board_idx = request.getParameter("board_idx");
+		String boardIdx = request.getParameter("board_idx");
 		
 		try {
-			Boards board = BoardsDAOImpl.getInstance().showBoardByIdx(board_idx);
+			Boards board = BoardsDAOImpl.getInstance().showBoardByIdx(boardIdx);
 			
 			if (board != null) {
 				request.setAttribute("board", board);

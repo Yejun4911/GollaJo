@@ -24,7 +24,8 @@ public class BoardRegisterController implements Controller {
 		
 		try {
 			BoardsDAOImpl.getInstance().registerBoard(userIdx, title, question, answer1, answer2);
-			path = "boardList.do?page=1";
+			int lastBoardIdx = BoardsDAOImpl.getInstance().getLastBoardIdx();
+			path = "boardDetail.do?board_idx=" + lastBoardIdx;
 		} catch (SQLException e) {
 			request.setAttribute("msg", errMsg);
 		}

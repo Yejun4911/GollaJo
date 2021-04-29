@@ -178,7 +178,7 @@ public class BoardsDAOImpl implements BoardsDAO {
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			String query = "SELECT COUNT(board_idx) AS board_count FROM boards;";
+			String query = "SELECT COUNT(board_idx) AS board_count FROM boards";
 			ps = conn.prepareStatement(query);
 			
 			rs = ps.executeQuery();
@@ -190,4 +190,26 @@ public class BoardsDAOImpl implements BoardsDAO {
 		return boardCount;
 	}
 
+	@Override
+	public int getLastBoardIdx()
+			throws SQLException {
+		int lastBoardIdx = 0;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT board_idx FROM boards ORDER BY board_idx DESC LIMIT 1";
+			ps = conn.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			if (rs.next()) lastBoardIdx = rs.getInt("board_idx");
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return lastBoardIdx;
+	}
+	
 }
