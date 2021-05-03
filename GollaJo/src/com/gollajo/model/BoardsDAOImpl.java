@@ -266,7 +266,7 @@ public class BoardsDAOImpl implements BoardsDAO {
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			String query = "SELECT COUNT(vote) AS vote_count FROM board_votes WHERE board_idx=? AND vote=1";
+			String query = "SELECT COUNT(vote) AS vote_count FROM board_votes WHERE board_idx=? AND vote=2";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, boardIdx);
 			
