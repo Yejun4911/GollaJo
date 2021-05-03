@@ -84,7 +84,7 @@
 <body>
 <div class="container">
 		<header>
-			<a href="index.jsp"><img src="image/logo.png" id="logo"></a>
+			<a href="/GollaJo/index.jsp"><img src="/GollaJo/image/logo.png" id="logo"></a>
 			<nav>
 				<ul>
 				<c:choose>
@@ -92,8 +92,8 @@
 						<li style="padding-left:100px;"><a href="logout.do">로그아웃</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="signIn.jsp">로그인</a></li>
-						<li><a href="signUp.jsp">회원가입</a></li>
+						<li><a href="/GollaJo/login/signIn.jsp">로그인</a></li>
+						<li><a href="/GollaJo/login/signUp.jsp">회원가입</a></li>
 					</c:otherwise>	
 				</c:choose>
 				</ul>			

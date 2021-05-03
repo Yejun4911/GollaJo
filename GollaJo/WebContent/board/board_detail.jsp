@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style type="text/css">
 
 body {
@@ -10,10 +13,10 @@ body {
 	
 }
 
-
 #wrap{
 	padding-top:50px;
-
+	width:100%;
+	margin: 0px auto;
 }
 
 #id{
@@ -35,8 +38,6 @@ body {
 	border: none;	
 	outline:none;
 	margin:0 auto;
-	
-	
 	}	
 	
 input[name=answer1]{
@@ -93,7 +94,7 @@ input[type=textarea]{
 }
 
 #title{
-	width:300px;
+	width:500px;
 	display: inline-block;
 	text-align:left;
 	font-size: 45px;
@@ -121,8 +122,9 @@ a{
 }
 
 </style>
+</head>
 <body>
-<%@ include file="view/header.jsp" %>
+<%@ include file="../view/header.jsp" %>
 <form action="boardRegister.do" method="post" style="border:1px soild #ccc" id=content>
 	<input type="hidden" name="user_idx" value="${vo.userIdx}">
 		<div id="wrap">
@@ -136,7 +138,7 @@ a{
 	    		<div id="question">	
 	    			${board.question}
 	    			<div id="chart">
-	    				<%@ include file="chart.jsp" %>
+	    				<%@ include file="../view/chart.jsp" %>
 	    			</div>
 	    		</div>
 	    		
@@ -149,6 +151,6 @@ a{
     	<a href="board_list.jsp">목록으로</a>
     </div>	 
 </form>
-<%@ include file="view/footer.jsp" %>
+<%@ include file="../view/footer.jsp" %>
 </body>
 </html>

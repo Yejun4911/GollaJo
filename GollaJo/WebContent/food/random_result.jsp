@@ -75,7 +75,7 @@ input[type=button]{
 
 </head>
 <body>
-<%@ include file="view/header.jsp" %>
+<%@ include file="../view/header.jsp" %>
 
 <form action="choice2.jsp">
 	<div class = "content">
@@ -87,6 +87,6 @@ input[type=button]{
 		</div>
 	</div>
 </form>	
-<%@ include file="view/footer.jsp" %>
+<%@ include file="../view/footer.jsp" %>
 </body>
 </html>

@@ -17,7 +17,7 @@ public class BoardDetailController implements Controller {
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, Exception {
-		String path = "boardList.do";
+		String path = "board/boardList.do";
 		String errMsg = "false";
 		
 		String boardIdx = request.getParameter("board_idx");
@@ -37,7 +37,7 @@ public class BoardDetailController implements Controller {
 				request.setAttribute("board", board);
 				request.setAttribute("percent1", percent1);
 				request.setAttribute("percent2", percent2);
-				path = "board_detail.jsp";
+				path = "board/board_detail.jsp";
 			}else {
 				request.setAttribute("msg", errMsg);
 			}

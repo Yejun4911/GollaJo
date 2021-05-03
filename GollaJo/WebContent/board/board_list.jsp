@@ -101,7 +101,7 @@ h1 {
 </style>
 </head>
 <body>
-<%@ include file="view/header.jsp" %>
+<%@ include file="../view/header.jsp" %>
 <form action="boardList.do">
 <h1 align="center">골라조 게시판</h1>
 

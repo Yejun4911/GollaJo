@@ -140,13 +140,6 @@ figure.snip1200.hover p {
 }
 </style>
 	
-<script type="text/javascript">
-  $(".hover").mouseleave(
-    function () {
-      $(this).removeClass("hover");
-    }
-  );
-  </script>
 </head>
 <body>
 	<%@ include file="view/header.jsp" %>
@@ -159,7 +152,7 @@ figure.snip1200.hover p {
       <h2>음식<span> 고르기</span></h2>
     </div>
   </figcaption>
-  <a href="food.jsp"></a>
+  <a href="food/food.jsp"></a>
 </figure>
 <figure class="snip1200">
   <img src="image/map.jpg" alt="sq-sample31" />
@@ -169,7 +162,7 @@ figure.snip1200.hover p {
       <h2>중간지점<span> 고르기</span></h2>
     </div>
   </figcaption>
-  <a href="#"></a>
+  <a href="road/road.jsp"></a>
 </figure>
 <figure class="snip1200">
   <img src="image/yesorno.jpg" alt="sq-sample32" />
@@ -179,7 +172,7 @@ figure.snip1200.hover p {
       <h2>YES?<span> No?</span></h2>
     </div>
   </figcaption>
-  <a href="#"></a>
+  <a href="gollajoButton.jsp"></a>
 </figure>
 <figure class="snip1200">
   <img src="image/board.jpg" alt="sq-sample32" />

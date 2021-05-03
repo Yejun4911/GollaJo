@@ -13,7 +13,7 @@ public class BoardDeleteController implements Controller {
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, Exception {
-		String path = "boardList.do";
+		String path = "board/boardList.do";
 		String msg = "false";
 		
 		String boardIdx = request.getParameter("board_idx");

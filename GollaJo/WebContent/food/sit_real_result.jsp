@@ -68,7 +68,7 @@ h1{
       		obj = {
       			menu:item,
       			value:cnt+1,
-      		}
+      		};
 
           	localStorage.setItem(k,JSON.stringify(obj));
       	}
@@ -103,12 +103,12 @@ h1{
 </head>
 
 <body>
-<%@ include file="view/header.jsp" %>
+<%@ include file="../view/header.jsp" %>
 
 <div class = "content">
 	<div id="piechart" style="width: 900px; height: 500px;"></div>
 </div>
 
-<%@ include file="view/footer.jsp" %>
+<%@ include file="../view/footer.jsp" %>
 </body>
 </html>

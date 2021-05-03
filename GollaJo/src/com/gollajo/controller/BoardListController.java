@@ -26,7 +26,7 @@ public class BoardListController implements Controller {
 			request.setAttribute("page", page);
 			request.setAttribute("boardList", boardList);
 			request.setAttribute("pageCount", boardCount / 10 + 1);
-			path = "board_list.jsp";
+			path = "board/board_list.jsp";
 		} catch (SQLException e) {
 			request.setAttribute("msg", errMsg);
 		}

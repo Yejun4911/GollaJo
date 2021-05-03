@@ -140,7 +140,7 @@ button:hover {
 	}
 </script>
 <body>
-<%@ include file="view/header.jsp" %>
+<%@ include file="../view/header.jsp" %>
 <form action="signUp.do" method="post" name="registerForm" onsubmit="return pwd2Check()">
   <div class="content">
   	<h2>로그인</h2><hr>
@@ -159,7 +159,7 @@ button:hover {
     </div>
   </div>
 </form>
-<%@ include file="view/footer.jsp" %>
+<%@ include file="../view/footer.jsp" %>
 </body>
 </html>
 </html>

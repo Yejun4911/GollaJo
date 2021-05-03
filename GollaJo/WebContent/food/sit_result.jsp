@@ -106,7 +106,7 @@ function url(){
 </head>
 
 <body>
-<%@ include file="view/header.jsp" %>
+<%@ include file="../view/header.jsp" %>
 
 <form action="choice2.jsp">
 	<div class = "content">
@@ -119,6 +119,6 @@ function url(){
 		</div>
 	</div>
 </form>	
-<%@ include file="view/footer.jsp" %>
+<%@ include file="../view/footer.jsp" %>
 </body>
 </html>

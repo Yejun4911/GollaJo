@@ -23,6 +23,8 @@ h1{
 }	
 
 .content{
+	
+	
 	width:400px;
 	height:400px;
 	line-height:500px;
@@ -46,34 +48,32 @@ input[type=button]{
 	border : none;	
 	font-size : 25px;
 	cursor: pointer;
+	margin : 30px;
 }
 
 #taste{
 	 background-color: red;
-	 margin-bottom: 20px;
-	 margin-top: 35px;
+	
 }
 
 #situation{
 	 background-color: rgb(46, 204, 113);
-	 margin-top:20px;
+	 
 }
 
-.class{
-	padding: auto auto;
-}
 
 </style>
 </head>
 <body>
-<%@ include file="view/header.jsp" %>	
+	<%@ include file="../view/header.jsp" %>
 	<div class = "content">
 		<div class="choice">
-			<h1>당신의 취향은?</h1>
-			<input type ="button" name="taste" value="국물" id="taste" onclick="location.href='food.do?choice=${param.choice}&taste1=${param.taste1}&taste2=${param.taste2}&taste3=5'">
-			<input type ="button" name="situation" value="안 국물" id="situation" onclick="location.href='food.do?choice=${param.choice}&taste1=${param.taste1}&taste2=${param.taste2}&taste3=6'">
+			<h1>오늘 뭐 먹지?</h1>
+			<input type ="button" name="taste" value="취향으로 선택" id="taste" onclick="location.href='food_taste1.jsp?choice=1'">
+			<input type ="button" name="situation" value="상황으로 선택" id="situation" onclick="location.href='food_case.jsp?choice=2'">
+			<input type ="button" name="random" value="아무거나" id="random" onclick="location.href='food.do?choice=3'">
 		</div>
 	</div>
-<%@ include file="view/footer.jsp" %>	
+	<%@ include file="../view/footer.jsp" %>
 </body>
 </html>

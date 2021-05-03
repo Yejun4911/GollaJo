@@ -24,7 +24,7 @@ public class BoardWriteController implements Controller {
 			
 			if (board != null) {
 				request.setAttribute("board", board);
-				path = "board_write.jsp";
+				path = "board/board_write.jsp";
 			}else {
 				request.setAttribute("msg", errMsg);
 			}

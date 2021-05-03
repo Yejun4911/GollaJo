@@ -58,7 +58,7 @@ button:hover {
 
 </style>
 <body>
-<%@ include file="view/header.jsp" %>
+<%@ include file="../view/header.jsp" %>
 <form action="signIn.do" method="post">
   <div class="content">
   	<h2>로그인</h2><hr>
@@ -75,7 +75,7 @@ button:hover {
    </c:if>
 
 </form>
-<%@ include file="view/footer.jsp" %>
+<%@ include file="../view/footer.jsp" %>
 </body>
 </html>
 </html>

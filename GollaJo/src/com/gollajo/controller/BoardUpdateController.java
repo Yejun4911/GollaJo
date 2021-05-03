@@ -25,7 +25,7 @@ public class BoardUpdateController implements Controller {
 		
 		try {
 			BoardsDAOImpl.getInstance().updateBoard(board_idx, title, question, answer1, answer2);
-			path = "boardDetail.do";
+			path = "board/boardDetail.do";
 		} catch (SQLException e) {
 			request.setAttribute("msg", errMsg);
 		}

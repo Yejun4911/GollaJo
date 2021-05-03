@@ -59,7 +59,7 @@ input[type=button]{
 #situation{
 	 background-color: rgb(46, 204, 113);
 	 margin-top:20px;
-}
+
 
 .class{
 	padding: auto auto;
@@ -68,14 +68,14 @@ input[type=button]{
 </style>
 </head>
 <body>
-<%@ include file="view/header.jsp" %>	
+<%@ include file="../view/header.jsp" %>	
 	<div class = "content">
 		<div class="choice">
 			<h1>당신의 취향은?</h1>
-			<input type ="button" name="taste" value="동양" id="taste" onclick="location.href='food_taste3.jsp?choice=${param.choice}&taste1=${param.taste1}&taste2=3'">
-			<input type ="button" name="situation" value="서양" id="situation" onclick="location.href='food_taste3.jsp?choice=${param.choice}&taste1=${param.taste1}&taste2=4'">
+			<input type ="button" name="taste" value="빨간 맛" id="taste" onclick="location.href='food_taste2.jsp?choice=${param.choice}&taste1=1'">
+			<input type ="button" name="situation" value="순한 맛" id="situation" onclick="location.href='food_taste2.jsp?choice=${param.choice}&taste1=2'">
 		</div>
 	</div>
-<%@ include file="view/footer.jsp" %>	
+<%@ include file="../view/footer.jsp" %>	
 </body>
 </html>
