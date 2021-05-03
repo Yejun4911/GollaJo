@@ -96,11 +96,11 @@ function reresult() {
 	}else{
 		document.getElementById("situation").value="메뉴가 더 이상 없습니다.";
 		document.getElementById("reset1").value="처음으로";
-		document.getElementById("reset1").setAttribute("onClick", "location.href='food_taste1.jsp?choice=1'");
+		document.getElementById("reset1").setAttribute("onClick", "location.href='${pageContext.request.contextPath}/food/food_taste1.jsp?choice=1'");
 	}
 }
 function url(){
-	location.href="taste_real_result.jsp?confirm="+arr[0];
+	location.href="${pageContext.request.contextPath}/food/taste_real_result.jsp?confirm="+arr[0];
 }
 </script>
 </head>

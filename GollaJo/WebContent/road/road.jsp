@@ -43,7 +43,7 @@ $(document).on("click", "#btn", function(){
     temp=temp-1;
     console.log(temp);
     console.log(arr[temp]);
-	$('#pList').append("<img src='image/person.png' id='person'>");
+	$('#pList').append("<img src='${pageContext.request.contextPath}/image/person.png' id='person'>");
 	$('#pList').append('<input type="hidden" name="place" value='+arr[temp].x+','+arr[temp].y+'>');
 });
 
@@ -115,7 +115,7 @@ input[type=text]{
 #btn{
 	width:100%;
 	height:30px;
-	font-size: 0.8em;
+	font-size: 0.6em;
 	margin-top:5px;
 	border:none;
 	cursor:pointer;
@@ -136,11 +136,11 @@ input[type=text]{
 	<hr>
 	<br>
 	<input type="text" name="place" id="place">
-	<img src="/image/search.png" id="send" style="cursor:pointer;">
+	<img src="${pageContext.request.contextPath}/image/search.png" id="send" style="cursor:pointer;">
 	<div id="list">
 	
 	</div>
-	<form action="road.do">
+	<form action="${pageContext.request.contextPath}/road.do">
 		<div id="pList">
 	
 		</div>

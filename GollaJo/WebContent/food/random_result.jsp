@@ -83,7 +83,7 @@ input[type=button]{
 			<h1>완전 랜덤 !</h1>
 			<input type ="button" name="random" value="${name}" id="random">
 			<input type ="button" name="reset" value="재선택" id="reset" onClick="window.location.reload()">
-			<input type ="button" name="reset" value="선택" id="reset2" onclick="location.href='random_real_result.jsp?confirm=${name}'">
+			<input type ="button" name="reset" value="선택" id="reset2" onclick="location.href='${pageContext.request.contextPath}/food/random_real_result.jsp?confirm=${name}'">
 		</div>
 	</div>
 </form>	

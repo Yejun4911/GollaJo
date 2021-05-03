@@ -73,12 +73,12 @@ input[type=button]{
 		
 		<div class="choice">
 			<h1>당신의 취향은?</h1>
-			<input type ="button" name="situation" value="비 오는 날" id="situation" onclick="location.href='food.do?choice=${param.choice}&situation=1'">
-			<input type ="button" name="situation" value="해장" id="situation" onclick="location.href='food.do?choice=${param.choice}&situation=2'">
-			<input type ="button" name="situation" value="점심" id="situation" onclick="location.href='food.do?choice=${param.choice}&situation=3'">
-			<input type ="button" name="situation" value="저녁" id="situation" onclick="location.href='food.do?choice=${param.choice}&situation=4'">
-			<input type ="button" name="situation" value="술자리" id="situation" onclick="location.href='food.do?choice=${param.choice}&situation=5'">
-			<input type ="button" name="situation" value="다이어트" id="situation" onclick="location.href='food.do?choice=${param.choice}&situation=6'">
+			<input type ="button" name="situation" value="비 오는 날" id="situation" onclick="location.href='${pageContext.request.contextPath}/food.do?choice=${param.choice}&situation=1'">
+			<input type ="button" name="situation" value="해장" id="situation" onclick="location.href='${pageContext.request.contextPath}/food.do?choice=${param.choice}&situation=2'">
+			<input type ="button" name="situation" value="점심" id="situation" onclick="location.href='${pageContext.request.contextPath}/food.do?choice=${param.choice}&situation=3'">
+			<input type ="button" name="situation" value="저녁" id="situation" onclick="location.href='${pageContext.request.contextPath}/food.do?choice=${param.choice}&situation=4'">
+			<input type ="button" name="situation" value="술자리" id="situation" onclick="location.href='${pageContext.request.contextPath}/food.do?choice=${param.choice}&situation=5'">
+			<input type ="button" name="situation" value="다이어트" id="situation" onclick="location.href='${pageContext.request.contextPath}/food.do?choice=${param.choice}&situation=6'">
 		</div>
 	</div>
 <%@ include file="../view/footer.jsp" %>		

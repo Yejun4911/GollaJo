@@ -10,7 +10,7 @@ public class RoadController implements Controller {
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, Exception {
-		String path="road_result.jsp";
+		String path="/road/road_result.jsp";
 		String[] arr = request.getParameterValues("place");
 		double x=0.0;
 		double y=0.0;

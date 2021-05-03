@@ -71,7 +71,7 @@ input[type=button]{
 			<h1>오늘 뭐 먹지?</h1>
 			<input type ="button" name="taste" value="취향으로 선택" id="taste" onclick="location.href='food_taste1.jsp?choice=1'">
 			<input type ="button" name="situation" value="상황으로 선택" id="situation" onclick="location.href='food_case.jsp?choice=2'">
-			<input type ="button" name="random" value="아무거나" id="random" onclick="location.href='food.do?choice=3'">
+			<input type ="button" name="random" value="아무거나" id="random" onclick="location.href='${pageContext.request.contextPath}/food.do?choice=3'">
 		</div>
 	</div>
 	<%@ include file="../view/footer.jsp" %>

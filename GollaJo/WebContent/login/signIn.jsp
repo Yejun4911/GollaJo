@@ -59,7 +59,7 @@ button:hover {
 </style>
 <body>
 <%@ include file="../view/header.jsp" %>
-<form action="signIn.do" method="post">
+<form action="${pageContext.request.contextPath}/signIn.do" method="post">
   <div class="content">
   	<h2>로그인</h2><hr>
     <label for="아이디"><b>ID</b></label>

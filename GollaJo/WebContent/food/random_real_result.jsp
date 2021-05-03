@@ -25,10 +25,14 @@ h1{
 }	
 
 .content{
-	display:flex;
-	align-items: center;
-	justify-content: center;
-	margin-top:100px;
+	position: absolute; 
+	padding: 20px; 
+	width: 700px; 
+	top: 50%; 
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	border:1px solid #ccc; 
+	border-radius: 5px;"
 }
 #piechart{
 	display:flex;
@@ -106,7 +110,7 @@ h1{
 <%@ include file="../view/header.jsp" %>
 
 <div class = "content">
-	<div id="piechart" style="width: 900px; height: 500px;"></div>
+	<div id="piechart" style="width: 600px; height: 500px;"></div>
 </div>
 
 <%@ include file="../view/footer.jsp" %>

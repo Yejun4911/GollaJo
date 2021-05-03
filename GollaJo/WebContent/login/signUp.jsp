@@ -141,7 +141,7 @@ button:hover {
 </script>
 <body>
 <%@ include file="../view/header.jsp" %>
-<form action="signUp.do" method="post" name="registerForm" onsubmit="return pwd2Check()">
+<form action="${pageContext.request.contextPath}/signUp.do" method="post" name="registerForm" onsubmit="return pwd2Check()">
   <div class="content">
   	<h2>로그인</h2><hr>
     <label for="아이디"><b>아이디</b></label><span id="idCheckResult"></span>

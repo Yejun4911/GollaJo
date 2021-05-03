@@ -124,7 +124,7 @@
 </style>
 <body>
 <%@ include file="../view/header.jsp" %>
-<form action="boardRegister.do" method="post" style="border:1px soild #ccc">
+<form action="${pageContext.request.contextPath}/boardRegister.do" method="post" style="border:1px soild #ccc">
 		<input type="hidden" name="user_idx" value="${vo.userIdx}">
 	<div class="all">
     	<div class="cb">

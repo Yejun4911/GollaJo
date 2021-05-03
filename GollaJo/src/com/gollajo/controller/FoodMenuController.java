@@ -30,7 +30,7 @@ public class FoodMenuController implements Controller {
 			}catch(SQLException e) {
 				
 			}
-			path="food/taste_result.jsp";
+			path="/food/taste_result.jsp";
 			
 		}else if(choice.equals("2")) {
 			String sitNum = request.getParameter("situation");
@@ -43,14 +43,14 @@ public class FoodMenuController implements Controller {
 			}
 			
 			
-			path="food/sit_result.jsp";
+			path="/food/sit_result.jsp";
 			
 			
 		}
 		else if(choice.equals("3")) {
 			String name = FoodMenusDAOImpl.getInstance().randomMenu();
 			request.setAttribute("name", name);
-			path="food/random_result.jsp";
+			path="/food/random_result.jsp";
 		}
 		
 	

@@ -272,14 +272,14 @@ function app() {
 		fortuneText = document.querySelector(".fc-fortune-text"),
 		fortuneLuckyNumbers = document.querySelector(".fc-lucky-numbers span"),
 		fortuneList = [
-			"YES!",
-			"NO!",
-			"YES!",
-			"NO!",
-			"YES!",
-			"NO!",
-			"YES!",
-			"NO!"
+			"YES",
+			"NO",
+			"YES",
+			"NO",
+			"YES",
+			"NO",
+			"YES",
+			"NO"
 		],
 		fortune = new Fortune(),
 

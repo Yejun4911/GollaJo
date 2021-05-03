@@ -107,10 +107,10 @@ h1 {
 
 	<c:choose>
 		<c:when test="${!empty vo}">
-			<a href="board_write.jsp"><img id="write" src="image/write.png"></a>
+			<a href="${pageContext.request.contextPath}/board/board_write.jsp"><img id="write" src="image/write.png"></a>
 		</c:when>
 		<c:otherwise>
-			<a href="signIn.jsp"><img id="write" src="image/write.png"></a>
+			<a href="${pageContext.request.contextPath}/login/signIn.jsp"><img id="write" src="image/write.png"></a>
 		</c:otherwise>
 	</c:choose>
 	

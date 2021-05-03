@@ -19,7 +19,8 @@ footer{
 </head>
 <body>
 <footer>
-    	<p>Copyright 2021 encore. All rights reserved.</p>
+    	<p>Mini Project</p>
+    	<p>https://github.com/EncoreWebProject4/WebProject</p>
 </footer>
 </body>
 </html>

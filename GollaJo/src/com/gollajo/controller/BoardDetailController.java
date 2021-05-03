@@ -17,7 +17,7 @@ public class BoardDetailController implements Controller {
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, Exception {
-		String path = "board/boardList.do";
+		String path = "boardList.do";
 		String errMsg = "false";
 		
 		String boardIdx = request.getParameter("board_idx");
