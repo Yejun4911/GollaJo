@@ -22,5 +22,7 @@ public interface BoardsDAO {
 	int getLastBoardIdx() throws SQLException;
 	int getAnswer1(String boardIdx) throws SQLException;
 	int getAnswer2(String boardIdx) throws SQLException;
+	boolean isExistVote(String userIdx, String boardIdx, String vote) throws SQLException;
+	void setAnswer(String userIdx, String boardIdx, String vote) throws SQLException;
 	
 }

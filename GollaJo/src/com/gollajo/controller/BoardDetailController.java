@@ -2,12 +2,15 @@ package com.gollajo.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.gollajo.model.Boards;
 import com.gollajo.model.BoardsDAOImpl;
+import com.gollajo.model.CommentAndLikes;
+import com.gollajo.model.CommentsDAOImpl;
 
 public class BoardDetailController implements Controller {
 
@@ -38,6 +41,9 @@ public class BoardDetailController implements Controller {
 			}else {
 				request.setAttribute("msg", errMsg);
 			}
+			
+			ArrayList<CommentAndLikes> commentList = CommentsDAOImpl.getInstance().showCommentList(boardIdx);
+			request.setAttribute("commentList", commentList);
 		} catch (SQLException e) {
 			request.setAttribute("msg", errMsg);
 		}

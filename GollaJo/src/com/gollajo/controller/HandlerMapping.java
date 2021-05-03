@@ -40,6 +40,10 @@ public class HandlerMapping {
 			controller = new BoardDeleteController();
 		} else if (command.equals("food.do")) {
 			controller = new FoodMenuController();
+		} else if (command.equals("boardVote.do")) {
+			controller = new BoardVoteController();
+		} else if (command.equals("commentWrite.do")) {
+			controller = new CommentWriteController();
 		} 
 		
 		return controller;

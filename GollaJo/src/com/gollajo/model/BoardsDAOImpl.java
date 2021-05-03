@@ -279,4 +279,47 @@ public class BoardsDAOImpl implements BoardsDAO {
 		return answer2;
 	}
 	
+	@Override
+	public boolean isExistVote(String userIdx, String boardIdx, String vote)
+			throws SQLException {
+		boolean flag = false;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT vote FROM board_votes WHERE user_idx=? AND board_idx=? AND vote=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, userIdx);
+			ps.setString(2, boardIdx);
+			ps.setString(3, vote);
+			
+			rs = ps.executeQuery();
+			flag = rs.next();
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return flag;
+	}
+	@Override
+	public void setAnswer(String userIdx, String boardIdx, String vote)
+			throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "INSERT INTO board_votes (user_idx, board_idx, vote) VALUES (?, ?, ?)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, userIdx);
+			ps.setString(2, boardIdx);
+			ps.setString(3, vote);
+			
+			System.out.println(ps.executeUpdate()+" row INSERT OK!!");
+		} finally {
+			closeAll(ps, conn);
+		}
+	}
+	
 }
