@@ -94,7 +94,7 @@ public class CommentsDAOImpl implements CommentsDAO {
 					+ "    FROM comments"
 					+ "    LEFT JOIN users ON comments.user_idx=users.user_idx"
 					+ "    LEFT JOIN comment_likes ON comments.comment_idx=comment_likes.comment_idx"
-				    + "    WHERE comment_idx=?"
+				    + "    WHERE comments.comment_idx=?"
 					+ "    GROUP BY comment_idx"
 					+ "    ORDER BY comment_idx DESC";
 			ps = conn.prepareStatement(query);
@@ -142,21 +142,107 @@ public class CommentsDAOImpl implements CommentsDAO {
 	}
 
 	@Override
+	public int getLastCommentIdx() throws SQLException {
+		int lastCommentIdx = 0;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT comment_idx FROM comments ORDER BY comment_idx DESC LIMIT 1";
+			ps = conn.prepareStatement(query);
+			
+			rs = ps.executeQuery();
+			if (rs.next()) lastCommentIdx = rs.getInt("comment_idx");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return lastCommentIdx;
+	}
+	
+	@Override
 	public void updateComment(String commentIdx, String comment) throws SQLException {
-		// TODO Auto-generated method stub
-
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "UPDATE comments SET comment=? WHERE comment_idx=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, comment);
+			ps.setString(2, commentIdx);
+			
+			System.out.println(ps.executeUpdate()+" row UPDATE OK!!");
+		} catch(SQLException e) {
+			
+		}finally {
+			closeAll(ps, conn);
+		}
 	}
 
 	@Override
 	public void deleteComment(String commentIdx) throws SQLException {
-		// TODO Auto-generated method stub
-
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "DELETE FROM comments WHERE comment_idx=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, commentIdx);
+			
+			System.out.println(ps.executeUpdate()+" row DELETE OK!!");
+		} catch(SQLException e) {
+			
+		}finally {
+			closeAll(ps, conn);
+		}
 	}
 
 	@Override
+	public boolean isExistCommentLike(String userIdx, String commentIdx) throws SQLException {
+		boolean flag = false;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT comment_like_idx, user_idx, comment_idx\r\n"
+					+ "FROM comment_likes\r\n"
+					+ "WHERE user_idx=? AND comment_idx=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, userIdx);
+			ps.setString(2, commentIdx);
+			
+			rs = ps.executeQuery();
+			flag = rs.next();
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return flag;
+	}
+	
+	@Override
 	public void likeComment(String userIdx, String commentIdx) throws SQLException {
-		// TODO Auto-generated method stub
-
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "INSERT INTO comment_likes (user_idx, comment_idx) VALUES (?, ?)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, userIdx);
+			ps.setString(2, commentIdx);
+			
+			System.out.println(ps.executeUpdate()+" row INSERT OK!!");
+		} catch(SQLException e) {
+			
+		}finally {
+			closeAll(ps, conn);
+		}
 	}
 
 }

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.gollajo.model.Boards;
+import com.gollajo.model.CommentAndLikes;
 import com.gollajo.model.Users;
 
 import config.ServerInfo;
@@ -313,5 +314,207 @@ public class DaoUnitTest {
 //		System.out.println(board2);
 //		int boardCount = test.getBoardCount();
 //		System.out.println(boardCount);
+//	}
+	
+	public ArrayList<CommentAndLikes> showCommentList(String boardIdx) throws SQLException {
+		ArrayList<CommentAndLikes> commentList = new ArrayList<CommentAndLikes>();
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			
+			String query = "SELECT comments.comment_idx AS comment_idx, users.user_idx AS user_idx, nickname, comment, register_datetime, modify_datetime, COUNT(comment_likes.user_idx) AS likes"
+					+ "    FROM comments"
+					+ "    LEFT JOIN users ON comments.user_idx=users.user_idx"
+					+ "    LEFT JOIN comment_likes ON comments.comment_idx=comment_likes.comment_idx"
+				    + "    WHERE board_idx=?"
+					+ "    GROUP BY comment_idx"
+					+ "    ORDER BY comment_idx DESC";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, boardIdx);
+			
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				commentList.add(new CommentAndLikes(
+						rs.getInt("comment_idx"),
+						rs.getInt("user_idx"),
+						rs.getString("nickname"),
+						rs.getString("comment"),
+						rs.getString("register_datetime"),
+						rs.getString("modify_datetime"),
+						rs.getInt("likes")
+						));
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return commentList;
+	}
+	
+	public CommentAndLikes showCommentLikeByIdx(String commentIdx) throws SQLException {
+		CommentAndLikes comment = null;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			
+			String query = "SELECT comments.comment_idx AS comment_idx, users.user_idx AS user_idx, nickname, comment, register_datetime, modify_datetime, COUNT(comment_likes.user_idx) AS likes"
+					+ "    FROM comments"
+					+ "    LEFT JOIN users ON comments.user_idx=users.user_idx"
+					+ "    LEFT JOIN comment_likes ON comments.comment_idx=comment_likes.comment_idx"
+				    + "    WHERE comments.comment_idx=?"
+					+ "    GROUP BY comment_idx"
+					+ "    ORDER BY comment_idx DESC";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, commentIdx);
+			
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				comment = new CommentAndLikes(
+						rs.getInt("comment_idx"),
+						rs.getInt("user_idx"),
+						rs.getString("nickname"),
+						rs.getString("comment"),
+						rs.getString("register_datetime"),
+						rs.getString("modify_datetime"),
+						rs.getInt("likes")
+						);
+			}
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return comment;
+	}
+
+	public void registerComment(String userIdx, String boardIdx, String comment) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "INSERT INTO comments"
+					+ "(user_idx, board_idx, comment, register_datetime, modify_datetime)"
+					+ "VALUES (?, ?, ?, NOW(), NOW());";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, userIdx);
+			ps.setString(2, boardIdx);
+			ps.setString(3, comment);
+			
+			System.out.println(ps.executeUpdate()+" row INSERT OK!!");
+		} catch(SQLException e) {
+			
+		}finally {
+			closeAll(ps, conn);
+		}
+	}
+
+	public void updateComment(String commentIdx, String comment) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "UPDATE comments SET comment=? WHERE comment_idx=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, comment);
+			ps.setString(2, commentIdx);
+			
+			System.out.println(ps.executeUpdate()+" row UPDATE OK!!");
+		} catch(SQLException e) {
+			
+		}finally {
+			closeAll(ps, conn);
+		}
+	}
+
+	public void deleteComment(String commentIdx) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "DELETE FROM comments WHERE comment_idx=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, commentIdx);
+			
+			System.out.println(ps.executeUpdate()+" row DELETE OK!!");
+		} catch(SQLException e) {
+			
+		}finally {
+			closeAll(ps, conn);
+		}
+	}
+
+	public boolean isExistCommentLike(String userIdx, String commentIdx) throws SQLException {
+		boolean flag = false;
+		
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			conn = getConnection();
+			String query = "SELECT comment_like_idx, user_idx, comment_idx\r\n"
+					+ "FROM comment_likes\r\n"
+					+ "WHERE user_idx=? AND comment_idx=?";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, userIdx);
+			ps.setString(2, commentIdx);
+			
+			rs = ps.executeQuery();
+			flag = rs.next();
+		} finally {
+			closeAll(rs, ps, conn);
+		}
+		
+		return flag;
+	}
+	
+	public void likeComment(String userIdx, String commentIdx) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = getConnection();
+			String query = "INSERT INTO comment_likes (user_idx, comment_idx) VALUES (?, ?)";
+			ps = conn.prepareStatement(query);
+			ps.setString(1, userIdx);
+			ps.setString(2, commentIdx);
+			
+			System.out.println(ps.executeUpdate()+" row INSERT OK!!");
+		} catch(SQLException e) {
+			
+		}finally {
+			closeAll(ps, conn);
+		}
+	}
+	
+//	public static void main(String[] args)throws Exception {
+//		DaoUnitTest test = new DaoUnitTest();
+//		
+//		ArrayList<CommentAndLikes> list = test.showCommentList("31");
+//		System.out.println(list);
+//		
+//		CommentAndLikes comment = test.showCommentLikeByIdx("1");
+//		System.out.println(comment);
+//		
+//		test.registerComment("1", "2", "하하하");
+//		ArrayList<CommentAndLikes> list2 = test.showCommentList("2");
+//		System.out.println(list2);
+//		
+//		test.updateComment("1", "크크크");
+//		list = test.showCommentList("31");
+//		System.out.println(list);
+//		
+//		test.deleteComment("1");
+//		list = test.showCommentList("31");
+//		System.out.println(list);
+//		
+//		System.out.println(test.isExistCommentLike("3", "3"));
+//		if (test.isExistCommentLike("3", "3"))
+//			System.out.println("이미 좋아요 한 게시물입니다.");
+//		else
+//			test.likeComment("3", "3");
 //	}
 }

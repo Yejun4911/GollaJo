@@ -44,7 +44,11 @@ public class HandlerMapping {
 			controller = new BoardVoteController();
 		} else if (command.equals("commentWrite.do")) {
 			controller = new CommentWriteController();
-		} 
+		} else if (command.equals("commentUpdate.do")) {
+			controller = new CommentUpdateController();
+		} else if (command.equals("commentDelete.do")) {
+			controller = new CommentDeleteController();
+		}
 		
 		return controller;
 	}
