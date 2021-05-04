@@ -8,16 +8,14 @@
 
 <style type="text/css">
 @font-face {
-    src: url("fonts/Recipekorea.otf"); 
-  	font-family: 'Recipekorea';
+    src: url("fonts/08SeoulNamsanL_0.ttf"); 
+  	font-family: "SeoulNamsanL";
 }
 * {
-	border: 0;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	font-family: 'Recipekorea';
-	font-weight: bold;
+	font-family: 'SeoulNamsanL';
 }
 
 body, button {
@@ -26,15 +24,14 @@ body, button {
 }
 body {
 	width:100%;
-	background: #FAFAD2	;
-
+	background: linear-gradient(110deg, white 60%, skyblue 60%);
 }
 button {
 	cursor: pointer;
 }
 /* Cookie */
 .fc {
-	
+	border:none;
 	background: transparent;
 	display: block;
 	margin: 10% auto 0 auto;
@@ -130,8 +127,6 @@ button {
 
 /* Fortune */
 .fc-fortune {
-	background-image:url('image/paper.jpg');
-		
 	color: black;
 	display: flex;
 	flex-direction: column;
@@ -142,8 +137,7 @@ button {
 	height: 6em;
 	left: 0;
 	transform: scale(0,1);
-	transform-origin: 50% 32%;
-	border : 1px rgb(231, 76, 60) ; 
+	transform-origin: 50% 32%; 
 }
 .fc-fortune-text {
 	font-size: 40px;
@@ -195,7 +189,7 @@ button {
 		transform: translateX(-14em) rotate(50deg);
 	}
 	to {
-		opacity: 0;
+		opacity: 3;
 		transform: translateX(-14em) rotate(50deg);
 	}
 }
@@ -211,7 +205,7 @@ button {
 		transform: translateX(14em) rotate(-50deg);
 	}
 	to {
-		opacity: 0;
+		opacity: 3;
 		transform: translateX(14em) rotate(-50deg);
 	}
 }

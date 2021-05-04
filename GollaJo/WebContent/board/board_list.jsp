@@ -163,6 +163,7 @@ h1 {
 
 		</div> 
 	</div>
-</form>	
+</form>
+<%@ include file="../view/footer.jsp" %>	
 </body>
 </html>

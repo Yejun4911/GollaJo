@@ -5,10 +5,17 @@
 
 
 <style type="text/css">
+@font-face {
+    src: url("fonts/08SeoulNamsanM_0.ttf"); 
+  	font-family: 'SeoulNamsan';
+}
+
+
 	input[type=text]{
-		border: none;	
 		outline:none;
 		margin:0 auto;
+		padding: 1% 1% 1% 1%; 
+
 	}	
 	textarea[name=answer1]{
 		border: 5px solid rgb(231, 76, 60);
@@ -45,12 +52,12 @@
 	
 
 	textarea#contenttext{
-		border:none;	
+		border: 2px medium black;
 		outline:none;
-		margin: 1% 1% 1% 1%;
+		margin: 5% 1% 1% 1%;
 		width: 99%;
 		height: 93%;
-
+		padding: 1% 1% 1% 1%;
 	}
 
 	span{
@@ -61,26 +68,29 @@
 	
     body {
         margin: 0px;
-      	}
-  
+     }
+
      .all{
       	top:35%;
       	margin: 0 auto;
         padding: 10px;
-        border: 2px solid #dddddd;
         border-radius: 5px;   
         top:50%;
 		left:50%; 
+		overflow:auto;
       }
       
      .cb {     	
+     	border: 2px medium black;
         box-sizing: content-box;
-        width:70%;
-        margin: 1% 1% 1% 13.5%;   
+        width:75%;
+        margin: 1% 1% 1% 13%;  
+
       }
 
       
       .content{
+       	border: 2px black;
       	box-sizing: content-box;
       	height: 20%;
       	margin: 1% 1% 1% 13.5%;
@@ -94,33 +104,58 @@
       
       .button{
       	border: none;
-      	margin: 0.03% 1% 0.3% 78% ;
+      	margin: 4% 1% 0.005% 78% ;
+      	margin-bottom: 80px;
+
 
       }
       
       .uploadbtn{
-      	  font-size: 20px;
+      	  font-size: 18px;
       	  padding: 2% 3%;
       	  border: 2px solid grey;
       	  color: grey;
       	  background-color: #dcdcdc;
       	  border-radius: 5px;
+
       }
 
-
-
-      
 
 	div#wrapper {
 		position: absolute;
 		top:50%;
 		left:50%;
 		}	
+		
+.myButton {
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
+	background-color:#f24537;
+	border-radius:6px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	font-weight:bold;
+	padding:7px 13px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #810e05;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
+	background-color:#c62d1f;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
 
 </style>
 <body>
 <%@ include file="../view/header.jsp" %>
-<form action="${pageContext.request.contextPath}/boardRegister.do" method="post" style="border:1px soild #ccc">
+<form action='${pageContext.request.contextPath}/boardRegister.do' method="post">
 		<input type="hidden" name="user_idx" value="${vo.userIdx}">
 	<div class="all">
     	<div class="cb">
@@ -137,12 +172,13 @@
 		</div>
 
     	<div class="button">
-    		<button type="submit" class="uploadbtn btn-primary pull-right" value="upload" style="cursor:pointer">올리기</button>	
+    		<button type="submit" class="uploadbtn btn-primary pull-right myButton" value="upload" style="cursor:pointer">올리기</button>	
     	</div>
 	</div>
-</form>
 
+</form>
 <%@ include file="../view/footer.jsp" %>
+
 </body>
 </html>
 </html>

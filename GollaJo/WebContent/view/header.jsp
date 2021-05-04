@@ -8,14 +8,32 @@
 <title>Insert title here</title>
 <style type="text/css">
 	@font-face {
-   src: url("fonts/08SeoulNamsanL_0.ttf"); 
+   	src: url("fonts/08SeoulNamsanL_0.ttf"); 
   	font-family: "SeoulNamsanL";
+  	font-family: 'Recipekorea';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Recipekorea.woff') format('woff');
+	}
+	html {
+
+    position: relative;
+
+    min-height: 100%;
+	}
+html,body {
+	  width: 100%;
+	  height: 100%;
+	   margin:0;
+	  padding:0;
+	  box-sizing:border-box;
 	}
 	
 	* {
 		margin:0;
 		padding:0;
 		box-sizing: border-box;
+	}
+	body{
+		
 	}
 	
 	ul {
@@ -37,7 +55,9 @@
 	}
 	.container{
 		margin:0 auto;
-		background-color:rgb(231, 76, 60);
+		background-color:#282828;
+		border-radius:20px;
+		margin:20px;
 	}
 	header > h2 {
 		margin-left:20px;
@@ -68,10 +88,12 @@
 		color:white;
 	}
 	#logo{
-		widht:100px;
-		height:100px;
+		widht:50px;
+		height:50px;
 		display: flex;
 		align-items: center;
+		margin-bottom:5px;
+		margin-left:10px;
 	}
 	
 </style>	
@@ -83,7 +105,7 @@
 <body>
 <div class="container">
 		<header>
-			<a href="/GollaJo/index.jsp"><img src="/GollaJo/image/logo.png" id="logo"></a>
+			<a href="/GollaJo/index.jsp"><img src="/GollaJo/image/logo2.png" id="logo"></a>
 			<nav>
 				<ul>
 				<c:choose>

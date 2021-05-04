@@ -28,7 +28,17 @@ function drawChart() {
   	 */
 	var options = {
   		legend: { position: "none" },
-  		 hAxis:{title:""},
+  		 hAxis:{
+  			 title:"",
+  			gridlines: {count: 0},
+  		},
+  		vAxis: { 
+            gridlines: { count: 0 },
+            "textStyle": {
+              "color": 'white',
+            }
+        }
+  		
 	};
 	 var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
@@ -91,9 +101,10 @@ $(function() {
    				input.value = "";
    				input.focus();
    				var comment = JSON.parse(result);
-   				$('tbody').prepend(
-   					"<tr><td>"+ comment.nickname + "</td><td>" + comment.comment + "</td><td>" + comment.likes + "</td></tr>"
-   				);
+   				location.reload();
+   				/* $('#com').prepend(
+   					"<p>"+ comment.nickname + "<span class='like-count'>추천" + comment.likes + "</span></p>" + comment.comment + "</td></tr>"
+   				); */
     		}
     	});
     })
@@ -102,9 +113,9 @@ $(function() {
     	commentBox.html("<input type='text' required></input><input class='comment-update-submit' type='submit' value='완료'>");
     })
     $('.comment-comment').on('click', '.comment-update-submit', function() {
-    	var input = $(this).parent().children()[0];
-    	var commentIdx = $(this).parent().parent().children(".comment-ud").children(".comment-update").attr('value');
-    	var comment = $(this).parent();
+    	var input = $(this).parent().find("input[type=text]").val();
+    	var commentIdx = $(this).parent().parent().find(".comment-update").attr('value');
+    	var comment = $(this).parent().find('.comment-comment');
     	$.ajax({
     		type: "post",
     		url: "commentUpdate.do",
@@ -132,8 +143,8 @@ $(function() {
     })
     $('.comment-like').click(function() {
     	userIdx = ${vo.userIdx};
-    	var commentIdx = $(this).parent().parent().children('.comment-ud').children('.comment-update').attr('value');
-    	var likeCount = $(this).parent().children('.like-count');
+    	var commentIdx = $(this).parent().parent().find('.comment-update').attr('value');
+    	var likeCount = $(this).parent().find('.like-count');
     	$.ajax({
     		type: "post",
     		url: "commentLike.do",
@@ -222,8 +233,8 @@ input[name=answer2]{
 input[name=answer1], [name=answer2]{
     height:70px;
     border-radius: 5px;
-    border : none;
-    font-size : 25px;
+    border: none;
+    font-size: 25px;
     display:inline-block;
     cursor: pointer;
     text-align:center;
@@ -238,12 +249,13 @@ input[name=answer1], [name=answer2]{
     width:70%;
     padding:20px;
     top:80%;
+    
 }
 #comment-box{
     display:inline;
     margin-left:-10px;
 }
-#comment-box>button{
+#comment-box > button{
     hover: #41A541;
 }
 .container-board{
@@ -251,23 +263,31 @@ input[name=answer1], [name=answer2]{
     margin:0 auto;
     left:70%;
 }
-#comment>table{
+#comment > table{
     padding:10px;
-    width:100%;
+    width:100%;a
     border-top: 1px solid #444444;
-    border-collapse:collapse;
+    border-collapse: collapse;
 }
-#comment>table>th,td{
-    border: 1px solid #444444;
-    background-color:#white;
+#comment > table > thead,td{
+    border-bottom: 1px solid #444444;
+    background-color:white;
     color:black;
     padding: 10px;
 
 }
-button class>comment-delete{
+button class > comment-delete{
     align:right;
 }
-
+#cline{
+	height: 4px;
+}
+#com{
+	padding:10px;
+}
+.comment-comment{
+	padding:5px;
+}
 </style>
 </head>
 <body>
@@ -298,32 +318,21 @@ button class>comment-delete{
 </form>
 <div class="container-board" id="comment">
 <div id="comment-box">
-        <input type="text" placeholder="댓글을 작성하세요" name="comment" maxlength="40" style="width:100%; height:50px;" required>
+        <input type="text" placeholder="댓글을 작성하세요" name="comment" maxlength="40" style="width:95%; height:50px;" required>
          <button type="submit" style="width:5%; height:50px;" >올리기</button>
-</div>
-    <table>
-          <thead>
-              <tr>
-                  <th align="left" width="20%"><b>작성자</b></th>
-                  <th align="left" width="40%"><b>댓글</b></th>
-                  <th align="left" width="20%"><b>좋아요</b></th>
-                  <th width="20%"></th>
-             </tr>
-         </thead>
-    <tbody>
-        <c:forEach items="${commentList}" var="comment">
-            <tr>
-                <td>${comment.nickname}</td>
-                <td class="comment-comment">${comment.comment}</td>
-                <td><span class="like-count">${comment.likes}</span><a class="comment-like" href="#a"><img src="${pageContext.request.contextPath}/image/heart.png" width="20" hieght="20"></a></td>
-                <td class="comment-ud">
-                	<button class="comment-update" value="${comment.commentIdx}">수정</button>
-                	<button class="comment-delete" value="${comment.commentIdx}">삭제</button>
-                </td>
-            </tr>
-        </c:forEach>
-    </tbody>
-</table>
+</div><br><br><br>
+    	<hr id = "cline">
+	    <c:forEach items="${commentList}" var="comment">
+	    	<div id="com">
+		           <p>${comment.nickname} <button class="comment-update" value="${comment.commentIdx}">수정</button>
+		           <button class="comment-delete" value="${comment.commentIdx}">삭제</button></p> 
+		           <p class="comment-comment">${comment.comment}</p>
+		           <a class="comment-like" href="#a"><img src="${pageContext.request.contextPath}/image/heart.png" width="15" hieght="15"></a><span class="like-count"> ${comment.likes}</span>
+		    	   <hr>	
+		    </div>
+		   
+	    </c:forEach>
+        
 </div>
 <%@ include file="../view/footer.jsp" %>
 </body>

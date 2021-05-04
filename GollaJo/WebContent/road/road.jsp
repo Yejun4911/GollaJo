@@ -43,23 +43,43 @@ $(document).on("click", "#btn", function(){
     temp=temp-1;
     console.log(temp);
     console.log(arr[temp]);
-	$('#pList').append("<img src='${pageContext.request.contextPath}/image/person.png' id='person'>");
+	$('#pList').append("<img alt="+arr[temp].place_name+" src='${pageContext.request.contextPath}/image/person.png' id='person'>");
 	$('#pList').append('<input type="hidden" name="place" value='+arr[temp].x+','+arr[temp].y+'>');
+
 });
 
-
-
+$(document).on("mouseenter", "#person", function(){
+	var point=$(this).attr('alt');
+	$('#place').val(point);
+	$(this).attr('src','${pageContext.request.contextPath}/image/xB.png')
+});
+$(document).on("mouseleave", "#person", function(){
+	$('#place').val("");
+	$(this).attr('src','${pageContext.request.contextPath}/image/person.png')
+});
+$(document).on("click", "#person", function(){
+	var result = confirm('삭제하시겠습니까?');
+	if(result){
+		$(this).remove();
+		$('#place').val("");
+	}
+	
+});
 </script>
 <style>
+
 #person{
 	margin-top:10px;
 	width:40px;
 	height:50px;
 	margin-right:10px;
 }
-#pList #person:hover{
-	margin:20px;
+.change{
+	background:url('${pageContext.request.contextPath}/image/x.png');
 }
+/* #pList #person:hover{
+	margin:20px;
+ }*/
 input[type=button]{
 	width:150px;
 }
@@ -70,17 +90,20 @@ input[type=button]{
 	top: 50%; 
 	left: 50%; 
 	transform: translate(-50%, -50%);
-	border:1px solid #ccc; 
+	border:3px solid #ccc; 
 	border-radius: 5px;"
+	background-color:gray;
+	
 }
 input[type=text]{
-	 width: 90%;
-	 display: inline-block;
-	 border: none;
-	 padding:10px;
-	 background: #f1f1f1;
-	 border-radius: 5px;
-	 float:left;
+	background-color:white;
+	width: 90%;
+	display: inline-block;
+	border: none;
+	padding:10px;
+	background: white;
+	border-radius: 5px;
+	float:left;
 }
 #send{
 	width: 40px;
@@ -101,14 +124,12 @@ input[type=text]{
  	background-color: white;
   	border: 1px solid gray;
   	border-radius: 45px;
-  	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   	transition: all 0.3s ease 0s;
   	cursor: pointer;
   	outline: none;
 }
 #submit:hover {
-  	background-color:rgb(231, 76, 60);
-  	box-shadow: 0px 15px 20px rgba(231, 76, 60, 0.4);
+  	background-color:black;
   	color: #fff;
   	transform: translateY(-7px);
 }
@@ -119,7 +140,7 @@ input[type=text]{
 	margin-top:5px;
 	border:none;
 	cursor:pointer;
-	background-color:white
+	
 }
 #list button:hover{
 	border:1px solid black;
@@ -142,7 +163,7 @@ input[type=text]{
 	</div>
 	<form action="${pageContext.request.contextPath}/road.do">
 		<div id="pList">
-	
+			
 		</div>
 			<input type="submit" name="send" id="submit" value="중간지점찾기">
 		
