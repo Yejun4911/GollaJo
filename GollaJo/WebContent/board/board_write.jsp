@@ -62,19 +62,15 @@
     body {
         margin: 0px;
       	}
-      	
-   div {
-        margin: 0 auto;
+  
+     .all{
+      	top:35%;
+      	margin: 0 auto;
         padding: 10px;
         border: 2px solid #dddddd;
         border-radius: 5px;   
         top:50%;
-		left:50%;    
-      }
-      
-      
-     .all{
-      	top:35%;
+		left:50%; 
       }
       
      .cb {     	
@@ -145,6 +141,7 @@
     	</div>
 	</div>
 </form>
+
 <%@ include file="../view/footer.jsp" %>
 </body>
 </html>

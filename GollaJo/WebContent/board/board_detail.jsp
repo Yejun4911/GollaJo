@@ -3,153 +3,230 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js%22%3E"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+google.charts.load('current', {'packages':['bar']});
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+	// 차트 데이터 설정
+	
+	var data = google.visualization.arrayToDataTable([
+          ['YES', 'NO'],
+          ['YES', 10],
+          ['NO', 20],
+    ]);
+
+	/* var data = new google.visualization.DataTable();
+	data.addColumn('string','YES');
+	data.addColumn('string','NO');
+	data.addRow([1,2]);		      	
+  	 */
+	var options = {
+  		legend: { position: "none" },
+  		 hAxis:{title:""},
+	};
+	 var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+     chart.draw(data, google.charts.Bar.convertOptions(options));
+}
+</script>
+<script>
+$(function() {
+    $('input[name=answer1]').click(function() {
+        $.ajax({
+            type: "post",
+            url: "boardVote.do",
+            data: {
+                "user_idx": ${vo.userIdx},
+                "board_idx": ${board.boardIdx},
+                "vote": 1
+                },
+            success: function(result) {
+                if (result == "false") {
+                    alert("이미 투표하셨습니다.")
+                } else {
+                    location.reload();
+                }
+            }
+        });
+    });
+    $('input[name=answer2]').click(function() {
+        $.ajax({
+            type: "post",
+            url: "boardVote.do",
+            data: {
+                "user_idx": ${vo.userIdx},
+                "board_idx": ${board.boardIdx},
+                "vote": 2
+                },
+            success: function(result) {
+                if (result == "false") {
+                    alert("이미 투표하셨습니다.")
+                } else {
+                    location.reload();
+                }
+            }
+        });
+    });
+})
+</script>
+ 
+<%@ include file="../view/header.jsp" %>
 <style type="text/css">
-
-body {
-	margin: 0px;
-	position: relative;
-	width:1536px;
-	
-}
-
-#wrap{
-	padding-top:50px;
-	width:100%;
-	margin: 0px auto;
-}
-
-#id{
-	font-size: 20px;
-	font-weight: bold;
-}
-
-#head{
-	float:right;
-	text-align:right;
-	width:300px;
-}
-
-#question{
-	position:relative;
-	padding-top:20px;
-	padding-left:20px;
-	height:200px;
-	border: none;	
-	outline:none;
-	margin:0 auto;
-	}	
-	
-input[name=answer1]{
-	background-color: rgb(231, 76, 60);
-	}	
-	
-input[name=answer2]{
-	background-color: rgb(46, 204, 113);
-	}
-	
-input[name=answer1], [name=answer2]{
-	height:70px;
-	border-radius: 5px;
-	border : none;	
-	font-size : 25px;
-	display:inline-block;
-	cursor: pointer;
-	text-align:center;
-    vertical-align:middle;
-  	margin : 0 20px;
-  	margin-bottom: 20px;
-}	
-
-#buttons{
-	text-align: center;
-	margin-top:100px;
-	margin-bottom: 50px;
-}
-
-input[type=textarea]{
-	height: 70%;
-}
 
 #content {
 	margin: 0 auto;
 	padding: 10px;
-	top:50%;
-	left:70%;
-	width:70%
-} 
+	max-width: 70%;
+	max-height:  80%;
+}
 
-.table_context {
+.wrap {
+	padding-top: 50px;
+	widht: 100%;
+	margin: 0 auto;
+}
+
+.title_table{
+	
 	box-sizing: content-box;
-	height: 400px;
+	margin:0 auto;
+	padding-top: 30px;
+	border-radius: 5px;  
+	position: relative;
+	width: 100%;
+	height: 30%;
+}
+
+.context_table {
+	box-sizing: content-box;
 	margin:0 auto;
 	border: 2px solid #dddddd;
 	border-radius: 5px;  
 	position: relative;
-}
-    	
-#viewAndtime{
-	display: inline-block;
-	text-align: right;
-}
-
-#title{
-	width:500px;
-	display: inline-block;
-	text-align:left;
-	font-size: 45px;
-}
-
-#tolist{
-	width:100px;
-	text-align: center;
-}
-
-a{
-	margin-top:10px;
-	text-decoration: none;
-	color:black;
-	font-size: 20px;
-	float: right;
+	width: 100%;
+	height: 100%;
 }
 
 #chart{
-	text-align:center;
-	width: 100%;
-	margin-left:180px;
-	padding:auto auto;	
+	display:flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#buttons{
+	text-align: center;
+    margin-top:10px;
+    margin-bottom: 50px;
+}
+#question{
+	padding:5px;
+}
+#chart>#columnchart_material{
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	width:40%;
+	height:20%;
+}
+input[name=answer1]{
+    background-color: rgb(231, 76, 60);
+    }
+
+input[name=answer2]{
+    background-color: rgb(46, 204, 113);
+    }
+
+input[name=answer1], [name=answer2]{
+    height:70px;
+    border-radius: 5px;
+    border : none;
+    font-size : 25px;
+    display:inline-block;
+    cursor: pointer;
+    text-align:center;
+    vertical-align:middle;
+    margin : 0 20px;
+    margin-bottom: 20px;
+}
+#comment{ 
+	padding:20px;
+	top:80%;
+	word-break:;
+	vertical-align:middle;	
+}
+.commentbox>input{
+	width:70%;
 	
+}
+.container-board{
+	width:70%;
+	margin:0 auto;
+	left:70%;
+
+}
+.container-board>table{
+	border-spacing:10%;
+	width:100%;
+	margin:10px auto;
 }
 
 </style>
 </head>
 <body>
-<%@ include file="../view/header.jsp" %>
-<form action="boardRegister.do" method="post" style="border:1px soild #ccc" id=content>
+<form action="boardRegister.do" method="post" id=content>
 	<input type="hidden" name="user_idx" value="${vo.userIdx}">
-		<div id="wrap">
-           <div id="head">
-		       <h3>번호 : ${board.boardIdx}</h3><span id="viewAndtime">등록시간 : ${board.registerDatetime} 조회수 : ${board.viewCount}</span> 
-		   </div>    		     
-		   <div id="title">
-			   	${board.title}
-		   </div>   
-    		<div class="table_context">
-	    		<div id="question">	
-	    			${board.question}
-	    			<div id="chart">
-	    				<%@ include file="../view/chart.jsp" %>
-	    			</div>
-	    		</div>
-	    		
-	    		<div id="buttons">
-	                <input type="button" name="answer1" maxlength="10" value="${board.answer1}" style="width: 200px"; required>
-	                <font size="10"><b>VS</b></font>
-	                <input type="button" name="answer2" maxlength="10" value="${board.answer2}" style="width: 200px"; required>
-	            </div>
-	    	</div>
-    	<a href="board_list.jsp">목록으로</a>
-    </div>	 
+		<div class = "wrap">
+			<div class = "title_table">
+				<h2>${board.title}</h2>
+				<hr>
+				<p>${vo.userIdx} ${board.registerDatetime} 조회수 ${board.viewCount}</p>
+			</div>
+			
+			<div class = "context_table">
+				<div id="question">	
+					${board.question}
+				</div>
+				<div id="buttons">
+                    <input type="button" name="answer1" maxlength="10" value="${board.answer1}" style="width: 15%"; required>
+                    <font size="10"><b>VS</b></font>
+                    <input type="button" name="answer2" maxlength="10" value="${board.answer2}" style="width: 15%"; required>
+                </div>
+				<div id="chart">
+		    		<div id="columnchart_material"></div>
+		    	</div>
+			</div>
+			
+		</div>
+</form>
+<form class="container-board" id="comment">
+	<table>
+          <thead>
+              <tr>
+                  <th align="left" width="30%"><b>작성자</b></th>
+                  <th align="left" width="40%"><b>댓글</b></th>
+                  <th align="right" width="30%"><b>좋아요</b></th>
+             </tr>
+         </thead>
+    <tbody>
+        <c:forEach items="${commentList}" var="comment">
+            <tr>
+                <td>${comment.nickname}</td>
+                <td>${comment.comment}</td>
+                <td>${comment.likes}</td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
+<div id="commentbox">
+    	<input type="text" placeholder="댓글을 작성하세요" name="comment" maxlength="40" style="width:100%; height:50px;" required>
+    	<button type="submit" style="margin:10px 10px 10px 980px ;">올리기</button>
+</div>
 </form>
 <%@ include file="../view/footer.jsp" %>
 </body>
