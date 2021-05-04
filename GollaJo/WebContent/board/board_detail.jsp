@@ -37,12 +37,14 @@ function drawChart() {
 </script>
 <script>
 $(function() {
+	var userIdx = 0;
     $('input[name=answer1]').click(function() {
+    	userIdx = ${vo.userIdx};
         $.ajax({
             type: "post",
             url: "boardVote.do",
             data: {
-                "user_idx": ${vo.userIdx},
+                "user_idx": userIdx,
                 "board_idx": ${board.boardIdx},
                 "vote": 1
                 },
@@ -56,11 +58,12 @@ $(function() {
         });
     });
     $('input[name=answer2]').click(function() {
+    	userIdx = ${vo.userIdx};
         $.ajax({
             type: "post",
             url: "boardVote.do",
             data: {
-                "user_idx": ${vo.userIdx},
+                "user_idx": userIdx,
                 "board_idx": ${board.boardIdx},
                 "vote": 2
                 },
@@ -73,6 +76,80 @@ $(function() {
             }
         });
     });
+    $('#comment-box>button').click(function() {
+    	var input = $(this).parent().children()[0];
+    	userIdx = ${vo.userIdx};
+    	$.ajax({
+    		type: "post",
+    		url: "commentWrite.do",
+    		data: {
+    			"user_idx": userIdx,
+    			"board_idx": ${board.boardIdx},
+    			"comment": input.value
+    		},
+    		success: function(result) {
+   				input.value = "";
+   				input.focus();
+   				var comment = JSON.parse(result);
+   				$('tbody').prepend(
+   					"<tr><td>"+ comment.nickname + "</td><td>" + comment.comment + "</td><td>" + comment.likes + "</td></tr>"
+   				);
+    		}
+    	});
+    })
+    $('.comment-update').click(function() {
+    	var commentBox = $(this).parent().parent().children('.comment-comment');
+    	commentBox.html("<input type='text' required></input><input class='comment-update-submit' type='submit' value='완료'>");
+    })
+    $('.comment-comment').on('click', '.comment-update-submit', function() {
+    	var input = $(this).parent().children()[0];
+    	var commentIdx = $(this).parent().parent().children(".comment-ud").children(".comment-update").attr('value');
+    	var comment = $(this).parent();
+    	$.ajax({
+    		type: "post",
+    		url: "commentUpdate.do",
+    		data: {
+    			"comment_idx": commentIdx,
+    			"comment": input.value
+    		},
+    		success: function(result) {
+    	    	comment.html(input.value);
+    		}
+    	});
+    })
+    $('.comment-delete').click(function() {
+    	var commentIdx = $(this).attr('value');
+    	var tr = $(this).parent().parent();
+    	userIdx = ${vo.userIdx};
+    	$.ajax({
+    		type: "post",
+    		url: "commentDelete.do",
+    		data: { "comment_idx": commentIdx },
+    		success: function(result) {
+    			tr.remove();
+    		}
+    	});
+    })
+    $('.comment-like').click(function() {
+    	userIdx = ${vo.userIdx};
+    	var commentIdx = $(this).parent().parent().children('.comment-ud').children('.comment-update').attr('value');
+    	var likeCount = $(this).parent().children('.like-count');
+    	$.ajax({
+    		type: "post",
+    		url: "commentLike.do",
+    		data: {
+    			"user_idx": userIdx,
+    			"comment_idx": commentIdx
+    		},
+    		success: function(result) {
+    			if (result) {
+    				likeCount.text(Number(likeCount.text()) + 1);
+    			} else {
+    				alert("이미 좋아요한 댓글입니다.");
+    			}
+    		}
+    	})
+    })
 })
 </script>
  
@@ -80,59 +157,59 @@ $(function() {
 <style type="text/css">
 
 #content {
-	margin: 0 auto;
-	padding: 10px;
-	max-width: 70%;
-	max-height:  80%;
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 70%;
+    max-height:  80%;
 }
 
 .wrap {
-	padding-top: 50px;
-	widht: 100%;
-	margin: 0 auto;
+    padding-top: 50px;
+    widht: 100%;
+    margin: 0 auto;
 }
 
 .title_table{
-	
-	box-sizing: content-box;
-	margin:0 auto;
-	padding-top: 30px;
-	border-radius: 5px;  
-	position: relative;
-	width: 100%;
-	height: 30%;
+
+    box-sizing: content-box;
+    margin:0 auto;
+    padding-top: 30px;
+    border-radius: 5px;
+    position: relative;
+    width: 100%;
+    height: 30%;
 }
 
 .context_table {
-	box-sizing: content-box;
-	margin:0 auto;
-	border: 2px solid #dddddd;
-	border-radius: 5px;  
-	position: relative;
-	width: 100%;
-	height: 100%;
+    box-sizing: content-box;
+    margin:0 auto;
+    border: 2px solid #dddddd;
+    border-radius: 5px;
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 #chart{
-	display:flex;
-	align-items: center;
-	justify-content: center;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #buttons{
-	text-align: center;
+    text-align: center;
     margin-top:10px;
     margin-bottom: 50px;
 }
 #question{
-	padding:5px;
+    padding:5px;
 }
 #chart>#columnchart_material{
-	display:flex;
-	align-items: center;
-	justify-content: center;
-	width:40%;
-	height:20%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width:40%;
+    height:20%;
 }
 input[name=answer1]{
     background-color: rgb(231, 76, 60);
@@ -155,25 +232,40 @@ input[name=answer1], [name=answer2]{
     margin-bottom: 20px;
 }
 #comment{ 
-	padding:20px;
-	top:80%;
-	word-break:;
-	vertical-align:middle;	
+    margin:0 auto;
+    padding:10px;
+    vertical-align:middle;
+    width:70%;
+    padding:20px;
+    top:80%;
 }
-.commentbox>input{
-	width:70%;
-	
+#comment-box{
+    display:inline;
+    margin-left:-10px;
+}
+#comment-box>button{
+    hover: #41A541;
 }
 .container-board{
-	width:70%;
-	margin:0 auto;
-	left:70%;
+    width:100%;
+    margin:0 auto;
+    left:70%;
+}
+#comment>table{
+    padding:10px;
+    width:100%;
+    border-top: 1px solid #444444;
+    border-collapse:collapse;
+}
+#comment>table>th,td{
+    border: 1px solid #444444;
+    background-color:#white;
+    color:black;
+    padding: 10px;
 
 }
-.container-board>table{
-	border-spacing:10%;
-	width:100%;
-	margin:10px auto;
+button class>comment-delete{
+    align:right;
 }
 
 </style>
@@ -204,30 +296,35 @@ input[name=answer1], [name=answer2]{
 
         </div>
 </form>
-<form class="container-board" id="comment">
+<div class="container-board" id="comment">
 <div id="comment-box">
         <input type="text" placeholder="댓글을 작성하세요" name="comment" maxlength="40" style="width:100%; height:50px;" required>
-        <button type="submit" style="margin:10px 10px 10px 800px ;">올리기</button>
+         <button type="submit" style="width:5%; height:50px;" >올리기</button>
 </div>
     <table>
           <thead>
               <tr>
-                  <th align="left" width="30%"><b>작성자</b></th>
+                  <th align="left" width="20%"><b>작성자</b></th>
                   <th align="left" width="40%"><b>댓글</b></th>
-                  <th align="right" width="30%"><b>좋아요</b></th>
+                  <th align="left" width="20%"><b>좋아요</b></th>
+                  <th width="20%"></th>
              </tr>
          </thead>
     <tbody>
         <c:forEach items="${commentList}" var="comment">
             <tr>
                 <td>${comment.nickname}</td>
-                <td>${comment.comment}</td>
-                <td>${comment.likes}</td>
+                <td class="comment-comment">${comment.comment}</td>
+                <td><span class="like-count">${comment.likes}</span><a class="comment-like" href="#a"><img src="${pageContext.request.contextPath}/image/heart.png" width="20" hieght="20"></a></td>
+                <td class="comment-ud">
+                	<button class="comment-update" value="${comment.commentIdx}">수정</button>
+                	<button class="comment-delete" value="${comment.commentIdx}">삭제</button>
+                </td>
             </tr>
         </c:forEach>
     </tbody>
 </table>
-</form>
+</div>
 <%@ include file="../view/footer.jsp" %>
 </body>
 </html>

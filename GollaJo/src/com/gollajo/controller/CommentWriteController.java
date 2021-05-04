@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.gollajo.model.Boards;
 import com.gollajo.model.BoardsDAOImpl;
+import com.gollajo.model.CommentAndLikes;
 import com.gollajo.model.CommentsDAOImpl;
+import com.google.gson.Gson;
 
 public class CommentWriteController implements Controller {
 
@@ -24,9 +26,13 @@ public class CommentWriteController implements Controller {
 		
 		try {
 			CommentsDAOImpl.getInstance().registerComment(userIdx, boardIdx, comment);
-			out.print(true);
+			
+			CommentAndLikes cal = CommentsDAOImpl.getInstance().showCommentLikeByIdx(CommentsDAOImpl.getInstance().getLastCommentIdx());
+			Gson gson = new Gson();
+			String calJson = gson.toJson(cal);
+			out.print(calJson);
 		} catch (SQLException e) {
-			out.print(false);
+			
 		}
 		
 		return null;

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.gollajo.model.BoardList;
 import com.gollajo.model.Boards;
 import com.gollajo.model.CommentAndLikes;
 import com.gollajo.model.Users;
@@ -146,30 +147,30 @@ public class DaoUnitTest {
 //	      System.out.println(user);
 //	}
 
-	public ArrayList<Boards> showBoardList(int page) throws SQLException {
-		ArrayList<Boards> boardList = new ArrayList<Boards>();
+	public ArrayList<BoardList> showBoardList(int page) throws SQLException {
+		ArrayList<BoardList> boardList = new ArrayList<BoardList>();
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			String query = "SELECT board_idx, user_idx, title, question, answer1, answer2, view_count, register_datetime, modify_datetime FROM boards LIMIT ?, 10";
+			
+			String query = "SELECT board_idx, title, nickname, register_datetime, view_count "
+					+ "FROM boards "
+					+ "LEFT JOIN users ON boards.user_idx=users.user_idx "
+					+ "ORDER BY board_idx DESC LIMIT ?, 10";
 			ps = conn.prepareStatement(query);
 			ps.setInt(1, (page - 1) * 10);
 			
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				boardList.add(new Boards(
+				boardList.add(new BoardList(
 						rs.getInt("board_idx"),
-						rs.getInt("user_idx"),
 						rs.getString("title"),
-						rs.getString("question"),
-						rs.getString("answer1"),
-						rs.getString("answer2"),
-						rs.getInt("view_count"),
+						rs.getString("nickname"),
 						rs.getString("register_datetime"),
-						rs.getString("modify_datetime")
+						rs.getInt("view_count")
 						));
 			}
 		} finally {
@@ -188,7 +189,10 @@ public class DaoUnitTest {
 		
 		try {
 			conn = getConnection();
-			String query = "SELECT board_idx, user_idx, title, question, answer1, answer2, view_count, register_datetime, modify_datetime FROM boards WHERE board_idx=?";
+			String query = "SELECT board_idx, users.user_idx AS user_idx, nickname, title, question, answer1, answer2, view_count, register_datetime, modify_datetime \r\n"
+					+ "FROM boards\r\n"
+					+ "LEFT JOIN users ON boards.user_idx=users.user_idx\r\n"
+					+ "WHERE board_idx=?";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, boardIdx);
 			
@@ -197,6 +201,7 @@ public class DaoUnitTest {
 				board = new Boards(
 						rs.getInt("board_idx"),
 						rs.getInt("user_idx"),
+						rs.getString("nickname"),
 						rs.getString("title"),
 						rs.getString("question"),
 						rs.getString("answer1"),

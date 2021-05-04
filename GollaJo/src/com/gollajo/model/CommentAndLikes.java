@@ -1,7 +1,5 @@
 package com.gollajo.model;
 
-import java.util.Date;
-
 public class CommentAndLikes {
 
 	private int commentIdx;

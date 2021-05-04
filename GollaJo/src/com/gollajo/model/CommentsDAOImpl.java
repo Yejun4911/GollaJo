@@ -81,7 +81,7 @@ public class CommentsDAOImpl implements CommentsDAO {
 	}
 	
 	@Override
-	public CommentAndLikes showCommentLikeByIdx(String commentIdx) throws SQLException {
+	public CommentAndLikes showCommentLikeByIdx(int commentIdx) throws SQLException {
 		CommentAndLikes comment = null;
 		
 		Connection conn = null;
@@ -98,7 +98,7 @@ public class CommentsDAOImpl implements CommentsDAO {
 					+ "    GROUP BY comment_idx"
 					+ "    ORDER BY comment_idx DESC";
 			ps = conn.prepareStatement(query);
-			ps.setString(1, commentIdx);
+			ps.setInt(1, commentIdx);
 			
 			rs = ps.executeQuery();
 			if (rs.next()) {

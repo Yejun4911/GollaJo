@@ -48,6 +48,8 @@ public class HandlerMapping {
 			controller = new CommentUpdateController();
 		} else if (command.equals("commentDelete.do")) {
 			controller = new CommentDeleteController();
+		} else if (command.equals("commentLike.do")) {
+			controller = new CommentLikeController();
 		} else if (command.equals("road.do")) {
 			controller = new RoadController();
 		} 

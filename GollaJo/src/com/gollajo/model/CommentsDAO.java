@@ -13,7 +13,7 @@ public interface CommentsDAO {
 	void closeAll(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException;
 	
 	ArrayList<CommentAndLikes> showCommentList(String boardIdx) throws SQLException;
-	CommentAndLikes showCommentLikeByIdx(String commentIdx) throws SQLException;
+	CommentAndLikes showCommentLikeByIdx(int commentIdx) throws SQLException;
 	void registerComment(String userIdx, String boardIdx, String comment) throws SQLException;
 	int getLastCommentIdx() throws SQLException;
 	void updateComment(String commentIdx, String comment) throws SQLException;
