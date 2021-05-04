@@ -18,7 +18,6 @@ public class CommentUpdateController implements Controller {
 		
 		String commentIdx = request.getParameter("comment_idx");
 		String comment = request.getParameter("comment");
-		System.out.println(commentIdx + ", " + comment);
 		try {
 			CommentsDAOImpl.getInstance().updateComment(commentIdx, comment);
 			out.print(true);

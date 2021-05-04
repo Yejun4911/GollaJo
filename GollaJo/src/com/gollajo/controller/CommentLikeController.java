@@ -18,7 +18,6 @@ public class CommentLikeController implements Controller {
 		
 		String userIdx = request.getParameter("user_idx");
 		String commentIdx = request.getParameter("comment_idx");
-		
 		try {
 			boolean flag = CommentsDAOImpl.getInstance().isExistCommentLike(userIdx, commentIdx);
 			if (flag) {

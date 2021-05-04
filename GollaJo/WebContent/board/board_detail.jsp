@@ -109,13 +109,14 @@ $(function() {
     	});
     })
     $('.comment-update').click(function() {
-    	var commentBox = $(this).parent().parent().children('.comment-comment');
+    	var commentBox = $(this).parent().children('.comment-comment');
     	commentBox.html("<input type='text' required></input><input class='comment-update-submit' type='submit' value='완료'>");
     })
     $('.comment-comment').on('click', '.comment-update-submit', function() {
-    	var input = $(this).parent().find("input[type=text]").val();
-    	var commentIdx = $(this).parent().parent().find(".comment-update").attr('value');
-    	var comment = $(this).parent().find('.comment-comment');
+    	var input = $(this).parent().children()[0];
+    	var commentIdx = $(this).parent().parent().children(".comment-update").attr('value');
+    	var comment = $(this).parent().parent().children('.comment-comment');
+    	console.log(comment.html());
     	$.ajax({
     		type: "post",
     		url: "commentUpdate.do",
@@ -143,7 +144,7 @@ $(function() {
     })
     $('.comment-like').click(function() {
     	userIdx = ${vo.userIdx};
-    	var commentIdx = $(this).parent().parent().find('.comment-update').attr('value');
+    	var commentIdx = $(this).parent().children('.comment-update').attr('value');
     	var likeCount = $(this).parent().find('.like-count');
     	$.ajax({
     		type: "post",
@@ -153,7 +154,7 @@ $(function() {
     			"comment_idx": commentIdx
     		},
     		success: function(result) {
-    			if (result) {
+    			if (result == "true") {
     				likeCount.text(Number(likeCount.text()) + 1);
     			} else {
     				alert("이미 좋아요한 댓글입니다.");
@@ -317,21 +318,24 @@ button class > comment-delete{
         </div>
 </form>
 <div class="container-board" id="comment">
-<div id="comment-box">
-        <input type="text" placeholder="댓글을 작성하세요" name="comment" maxlength="40" style="width:95%; height:50px;" required>
-         <button type="submit" style="width:5%; height:50px;" >올리기</button>
-</div><br><br><br>
-    	<hr id = "cline">
-	    <c:forEach items="${commentList}" var="comment">
-	    	<div id="com">
-		           <p>${comment.nickname} <button class="comment-update" value="${comment.commentIdx}">수정</button>
-		           <button class="comment-delete" value="${comment.commentIdx}">삭제</button></p> 
-		           <p class="comment-comment">${comment.comment}</p>
-		           <a class="comment-like" href="#a"><img src="${pageContext.request.contextPath}/image/heart.png" width="15" hieght="15"></a><span class="like-count"> ${comment.likes}</span>
-		    	   <hr>	
-		    </div>
-		   
-	    </c:forEach>
+
+	<div id="comment-box">
+	        <input type="text" placeholder="댓글을 작성하세요" name="comment" maxlength="40" style="width:95%; height:50px;" required>
+	         <button type="submit" style="width:5%; height:50px;" >올리기</button>
+	</div><br><br><br>
+   	<hr id = "cline">
+    <c:forEach items="${commentList}" var="comment">
+    	<div id="com">
+	           ${comment.nickname}<button class="comment-update" value="${comment.commentIdx}">수정</button>
+	           <button class="comment-delete" value="${comment.commentIdx}">삭제</button><br> 
+	           <p class="comment-comment">${comment.comment}</p>
+	           <a class="comment-like" href="#a">
+	           	<img src="${pageContext.request.contextPath}/image/heart.png" width="15" height="15">
+	           </a>
+	           <span class="like-count">${comment.likes}</span>
+	    	   <hr>	
+	    </div>
+    </c:forEach>
         
 </div>
 <%@ include file="../view/footer.jsp" %>
