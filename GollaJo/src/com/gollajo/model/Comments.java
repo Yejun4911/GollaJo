@@ -6,17 +6,17 @@ public class Comments {
 	private int commentIdx;
 	private int userIdx;
 	private int boardIdx;
-	private String content;
+	private String comment;
 	private Date registerDate;
 	private Date modifyDate;
 	
 	
-	public Comments(int commentIdx, int userIdx, int boardIdx, String content, Date registerDate, Date modifyDate) {
+	public Comments(int commentIdx, int userIdx, int boardIdx, String comment, Date registerDate, Date modifyDate) {
 		super();
 		this.commentIdx = commentIdx;
 		this.userIdx = userIdx;
 		this.boardIdx = boardIdx;
-		this.content = content;
+		this.comment = comment;
 		this.registerDate = registerDate;
 		this.modifyDate = modifyDate;
 	}
@@ -38,11 +38,11 @@ public class Comments {
 	public void setBoardIdx(int boardIdx) {
 		this.boardIdx = boardIdx;
 	}
-	public String getContent() {
-		return content;
+	public String getComment() {
+		return comment;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	public Date getRegisterDate() {
 		return registerDate;
@@ -58,8 +58,8 @@ public class Comments {
 	}
 	@Override
 	public String toString() {
-		return "Comments [commentIdx=" + commentIdx + ", userIdx=" + userIdx + ", boardIdx=" + boardIdx + ", content="
-				+ content + ", registerDate=" + registerDate + ", modifyDate=" + modifyDate + "]";
+		return "Comments [commentIdx=" + commentIdx + ", userIdx=" + userIdx + ", boardIdx=" + boardIdx + ", comment="
+				+ comment + ", registerDate=" + registerDate + ", modifyDate=" + modifyDate + "]";
 	}
 	
 	

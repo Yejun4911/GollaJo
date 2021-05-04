@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js%22%3E"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 
@@ -16,9 +16,9 @@ function drawChart() {
 	// 차트 데이터 설정
 	
 	var data = google.visualization.arrayToDataTable([
-          ['YES', 'NO'],
-          ['YES', 10],
-          ['NO', 20],
+          ['${board.answer1}', '${board.answer2}'],
+          ['${board.answer1}', ${percent1}],
+          ['${board.answer2}', ${percent2}],
     ]);
 
 	/* var data = new google.visualization.DataTable();
@@ -180,32 +180,36 @@ input[name=answer1], [name=answer2]{
 </head>
 <body>
 <form action="boardRegister.do" method="post" id=content>
-	<input type="hidden" name="user_idx" value="${vo.userIdx}">
-		<div class = "wrap">
-			<div class = "title_table">
-				<h2>${board.title}</h2>
-				<hr>
-				<p>${vo.userIdx} ${board.registerDatetime} 조회수 ${board.viewCount}</p>
-			</div>
-			
-			<div class = "context_table">
-				<div id="question">	
-					${board.question}
-				</div>
-				<div id="buttons">
+    <input type="hidden" name="user_idx" value="${vo.userIdx}">
+        <div class = "wrap">
+            <div class = "title_table">
+                <h2>${board.title}</h2>
+                <hr>
+                <p>${board.nickname} ${board.registerDatetime} 조회수 ${board.viewCount}</p>
+            </div>
+
+            <div class = "context_table">
+                <div id="question">
+                    ${board.question}
+                </div>
+                <div id="buttons">
                     <input type="button" name="answer1" maxlength="10" value="${board.answer1}" style="width: 15%"; required>
                     <font size="10"><b>VS</b></font>
                     <input type="button" name="answer2" maxlength="10" value="${board.answer2}" style="width: 15%"; required>
                 </div>
-				<div id="chart">
-		    		<div id="columnchart_material"></div>
-		    	</div>
-			</div>
-			
-		</div>
+                <div id="chart">
+                    <div id="columnchart_material"></div>
+                </div>
+            </div>
+
+        </div>
 </form>
 <form class="container-board" id="comment">
-	<table>
+<div id="comment-box">
+        <input type="text" placeholder="댓글을 작성하세요" name="comment" maxlength="40" style="width:100%; height:50px;" required>
+        <button type="submit" style="margin:10px 10px 10px 800px ;">올리기</button>
+</div>
+    <table>
           <thead>
               <tr>
                   <th align="left" width="30%"><b>작성자</b></th>
@@ -223,10 +227,6 @@ input[name=answer1], [name=answer2]{
         </c:forEach>
     </tbody>
 </table>
-<div id="commentbox">
-    	<input type="text" placeholder="댓글을 작성하세요" name="comment" maxlength="40" style="width:100%; height:50px;" required>
-    	<button type="submit" style="margin:10px 10px 10px 980px ;">올리기</button>
-</div>
 </form>
 <%@ include file="../view/footer.jsp" %>
 </body>

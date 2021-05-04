@@ -11,6 +11,7 @@ import com.gollajo.model.Boards;
 import com.gollajo.model.BoardsDAOImpl;
 import com.gollajo.model.CommentAndLikes;
 import com.gollajo.model.CommentsDAOImpl;
+import com.gollajo.model.UsersDAOImpl;
 
 public class BoardDetailController implements Controller {
 

@@ -19,9 +19,9 @@ public class BoardVoteController implements Controller {
 		String userIdx = request.getParameter("user_idx");
 		String boardIdx = request.getParameter("board_idx");
 		String vote = request.getParameter("vote");
-
+		System.out.println(vote);
 		try {
-			if (BoardsDAOImpl.getInstance().isExistVote(userIdx, boardIdx, vote)) {
+			if (BoardsDAOImpl.getInstance().isExistVote(userIdx, boardIdx)) {
 				out.print(false);
 				return null;
 			}

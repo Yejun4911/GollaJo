@@ -51,7 +51,10 @@ public class BoardsDAOImpl implements BoardsDAO {
 		try {
 			conn = getConnection();
 			
-			String query = "SELECT board_idx, title, nickname, register_datetime, view_count FROM boards LEFT JOIN users ON boards.user_idx=users.user_idx ORDER BY board_idx DESC LIMIT ?, 10";
+			String query = "SELECT board_idx, title, nickname, register_datetime, view_count "
+					+ "FROM boards "
+					+ "LEFT JOIN users ON boards.user_idx=users.user_idx "
+					+ "ORDER BY board_idx DESC LIMIT ?, 10";
 			ps = conn.prepareStatement(query);
 			ps.setInt(1, (page - 1) * 10);
 			
@@ -99,7 +102,10 @@ public class BoardsDAOImpl implements BoardsDAO {
 		
 		try {
 			conn = getConnection();
-			String query = "SELECT board_idx, user_idx, title, question, answer1, answer2, view_count, register_datetime, modify_datetime FROM boards WHERE board_idx=?";
+			String query = "SELECT board_idx, users.user_idx AS user_idx, nickname, title, question, answer1, answer2, view_count, register_datetime, modify_datetime \r\n"
+					+ "FROM boards\r\n"
+					+ "LEFT JOIN users ON boards.user_idx=users.user_idx\r\n"
+					+ "WHERE board_idx=?";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, boardIdx);
 			
@@ -108,6 +114,7 @@ public class BoardsDAOImpl implements BoardsDAO {
 				board = new Boards(
 						rs.getInt("board_idx"),
 						rs.getInt("user_idx"),
+						rs.getString("nickname"),
 						rs.getString("title"),
 						rs.getString("question"),
 						rs.getString("answer1"),
@@ -280,7 +287,7 @@ public class BoardsDAOImpl implements BoardsDAO {
 	}
 	
 	@Override
-	public boolean isExistVote(String userIdx, String boardIdx, String vote)
+	public boolean isExistVote(String userIdx, String boardIdx)
 			throws SQLException {
 		boolean flag = false;
 		
@@ -289,11 +296,10 @@ public class BoardsDAOImpl implements BoardsDAO {
 		ResultSet rs = null;
 		try {
 			conn = getConnection();
-			String query = "SELECT vote FROM board_votes WHERE user_idx=? AND board_idx=? AND vote=?";
+			String query = "SELECT vote FROM board_votes WHERE user_idx=? AND board_idx=?";
 			ps = conn.prepareStatement(query);
 			ps.setString(1, userIdx);
 			ps.setString(2, boardIdx);
-			ps.setString(3, vote);
 			
 			rs = ps.executeQuery();
 			flag = rs.next();

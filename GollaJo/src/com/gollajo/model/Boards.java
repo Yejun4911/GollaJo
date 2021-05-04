@@ -3,6 +3,7 @@ package com.gollajo.model;
 public class Boards {
 	private int boardIdx;
 	private int userIdx;
+	private String nickname;
 	private String title;
 	private String question;
 	private String answer1;
@@ -10,14 +11,37 @@ public class Boards {
 	private int viewCount;
 	private String registerDatetime;
 	private String modifyDatetime;
+	public Boards(int boardIdx, int userIdx, String nickname, String title, String question, String answer1,
+			String answer2, int viewCount, String registerDatetime, String modifyDatetime) {
+		super();
+		this.boardIdx = boardIdx;
+		this.userIdx = userIdx;
+		this.nickname = nickname;
+		this.title = title;
+		this.question = question;
+		this.answer1 = answer1;
+		this.answer2 = answer2;
+		this.viewCount = viewCount;
+		this.registerDatetime = registerDatetime;
+		this.modifyDatetime = modifyDatetime;
+	}
 	public int getBoardIdx() {
 		return boardIdx;
+	}
+	public void setBoardIdx(int boardIdx) {
+		this.boardIdx = boardIdx;
 	}
 	public int getUserIdx() {
 		return userIdx;
 	}
 	public void setUserIdx(int userIdx) {
 		this.userIdx = userIdx;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getTitle() {
 		return title;
@@ -61,27 +85,11 @@ public class Boards {
 	public void setModifyDatetime(String modifyDatetime) {
 		this.modifyDatetime = modifyDatetime;
 	}
-	public void setBoardIdx(int boardIdx) {
-		this.boardIdx = boardIdx;
-	}
-	public Boards(int boardIdx, int userIdx, String title, String question, String answer1, String answer2,
-			int viewCount, String registerDatetime, String modifyDatetime) {
-		super();
-		this.boardIdx = boardIdx;
-		this.userIdx = userIdx;
-		this.title = title;
-		this.question = question;
-		this.answer1 = answer1;
-		this.answer2 = answer2;
-		this.viewCount = viewCount;
-		this.registerDatetime = registerDatetime;
-		this.modifyDatetime = modifyDatetime;
-	}
 	@Override
 	public String toString() {
-		return "Boards [boardIdx=" + boardIdx + ", userIdx=" + userIdx + ", title=" + title + ", question=" + question
-				+ ", answer1=" + answer1 + ", answer2=" + answer2 + ", viewCount=" + viewCount + ", registerDatetime="
-				+ registerDatetime + ", modifyDatetime=" + modifyDatetime + "]";
+		return "Boards [boardIdx=" + boardIdx + ", userIdx=" + userIdx + ", nickname=" + nickname + ", title=" + title
+				+ ", question=" + question + ", answer1=" + answer1 + ", answer2=" + answer2 + ", viewCount="
+				+ viewCount + ", registerDatetime=" + registerDatetime + ", modifyDatetime=" + modifyDatetime + "]";
 	}
 	
 }
