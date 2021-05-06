@@ -17,15 +17,15 @@ public class BoardUpdateController implements Controller {
 		String path = "boardWrite.do";
 		String errMsg = "false";
 		
-		String board_idx = request.getParameter("board_idx");
+		String boardIdx = request.getParameter("board_idx");
 		String title = request.getParameter("title");		
 		String question = request.getParameter("question");		
 		String answer1 = request.getParameter("answer1");		
 		String answer2 = request.getParameter("answer2");
-		
+		System.out.println(boardIdx + ", ");
 		try {
-			BoardsDAOImpl.getInstance().updateBoard(board_idx, title, question, answer1, answer2);
-			path = "board/boardDetail.do";
+			BoardsDAOImpl.getInstance().updateBoard(boardIdx, title, question, answer1, answer2);
+			path = "boardDetail.do?board_idx=" + boardIdx;
 		} catch (SQLException e) {
 			request.setAttribute("msg", errMsg);
 		}

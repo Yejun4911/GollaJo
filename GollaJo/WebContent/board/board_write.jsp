@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0">
 <!DOCTYPE html>
 
@@ -155,16 +156,42 @@
 </style>
 <body>
 <%@ include file="../view/header.jsp" %>
-<form action='${pageContext.request.contextPath}/boardRegister.do' method="post">
-		<input type="hidden" name="user_idx" value="${vo.userIdx}">
+<c:choose>
+<c:when test="${!empty board}">
+<form action='${pageContext.request.contextPath}/boardUpdate.do' method="post">
+	<input type="hidden" name="user_idx" value="${vo.userIdx}">
+	<input type="hidden" name="board_idx" value="${board.boardIdx}">
 	<div class="all">
     	<div class="cb">
-      		<input type="text" placeholder="제목을 입력하세요" name="title" maxlength="50" style="width:95%;"  required>
+      		<input type="text" value="${board.title}" placeholder="제목을 입력하세요" name="title" maxlength="50" style="width:95%;" required>
    		</div>
             <div class ="choice" style="text-align:center;border:0;">
-               <textarea id="contentchoice1"  type="text" placeholder="선 택 1&#13;&#10;&#13;&#10;결정이 필요한 사항을 입력해주세요." name="answer1" maxlength="10" ; required></textarea>
+               <textarea id="contentchoice1" placeholder="선 택 1&#13;&#10;&#13;&#10;결정이 필요한 사항을 입력해주세요." name="answer1" maxlength="10" ; required>${board.answer1}</textarea>
           			<span><strong>VS</strong></span>
-               <textarea id="contentchoice2" type="text" placeholder="선 택 2&#13;&#10;&#13;&#10;결정이 필요한 사항을 입력해주세요." name="answer2" maxlength="10"; required></textarea>
+               <textarea id="contentchoice2" placeholder="선 택 2&#13;&#10;&#13;&#10;결정이 필요한 사항을 입력해주세요." name="answer2" maxlength="10"; required>${board.answer2}</textarea>
+    	</div>
+    	
+    	<div class ="content">
+      		<textarea id="contenttext" wrap="virtual" placeholder="글을 입력하세요"  name="question" maxlength="2040" >${board.question}</textarea>
+		</div>
+
+    	<div class="button">
+    		<button type="submit" class="uploadbtn btn-primary pull-right myButton" value="upload" style="cursor:pointer">올리기</button>	
+    	</div>
+	</div>
+</form>
+</c:when>
+<c:otherwise>
+<form action='${pageContext.request.contextPath}/boardRegister.do' method="post">
+	<input type="hidden" name="user_idx" value="${vo.userIdx}">
+	<div class="all">
+    	<div class="cb">
+      		<input type="text" placeholder="제목을 입력하세요" name="title" maxlength="50" style="width:95%;" required>
+   		</div>
+            <div class ="choice" style="text-align:center;border:0;">
+               <textarea id="contentchoice1" placeholder="선 택 1&#13;&#10;&#13;&#10;결정이 필요한 사항을 입력해주세요." name="answer1" maxlength="10" ; required></textarea>
+          			<span><strong>VS</strong></span>
+               <textarea id="contentchoice2" placeholder="선 택 2&#13;&#10;&#13;&#10;결정이 필요한 사항을 입력해주세요." name="answer2" maxlength="10"; required></textarea>
     	</div>
     	
     	<div class ="content">
@@ -175,8 +202,10 @@
     		<button type="submit" class="uploadbtn btn-primary pull-right myButton" value="upload" style="cursor:pointer">올리기</button>	
     	</div>
 	</div>
-
 </form>
+</c:otherwise>
+</c:choose>
+
 <%@ include file="../view/footer.jsp" %>
 
 </body>

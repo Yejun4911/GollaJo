@@ -26,18 +26,12 @@ public class BoardDetailController implements Controller {
 		try {
 			BoardsDAOImpl.getInstance().increaseViewCount(boardIdx);
 			Boards board = BoardsDAOImpl.getInstance().showBoardByIdx(boardIdx);
-			int answer1 = BoardsDAOImpl.getInstance().getAnswer1(boardIdx);
-			int answer2 = BoardsDAOImpl.getInstance().getAnswer2(boardIdx);
-			int percent1 = 0; int percent2 = 0;
-			if (answer1 > 0 || answer2 > 0) {
-				percent1 = answer1 * 100 / (answer1 + answer2);
-				percent2 = answer2 * 100 / (answer1 + answer2);
-			}
-			
+			int vote1 = BoardsDAOImpl.getInstance().getAnswer1(boardIdx);
+			int vote2 = BoardsDAOImpl.getInstance().getAnswer2(boardIdx);
 			if (board != null) {
 				request.setAttribute("board", board);
-				request.setAttribute("percent1", percent1);
-				request.setAttribute("percent2", percent2);
+				request.setAttribute("vote1", vote1);
+				request.setAttribute("vote2", vote2);
 				path = "board/board_detail.jsp";
 			}else {
 				request.setAttribute("msg", errMsg);

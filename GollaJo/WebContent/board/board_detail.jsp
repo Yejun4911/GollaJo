@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +18,8 @@ function drawChart() {
 	
 	var data = google.visualization.arrayToDataTable([
           ['${board.answer1}', '${board.answer2}'],
-          ['${board.answer1}', ${percent1}],
-          ['${board.answer2}', ${percent2}],
+          ['${board.answer1}', ${vote1}],
+          ['${board.answer2}', ${vote2}],
     ]);
 
 	/* var data = new google.visualization.DataTable();
@@ -289,16 +290,28 @@ button class > comment-delete{
 .comment-comment{
 	padding:5px;
 }
+form {
+	display: inline;
+}
 </style>
 </head>
 <body>
-<form action="boardRegister.do" method="post" id=content>
-    <input type="hidden" name="user_idx" value="${vo.userIdx}">
+<div id=content>
         <div class = "wrap">
             <div class = "title_table">
                 <h2>${board.title}</h2>
                 <hr>
-                <p>${board.nickname} ${board.registerDatetime} 조회수 ${board.viewCount}</p>
+                ${board.nickname} ${board.registerDatetime} 조회수 ${board.viewCount}
+                <c:if test="${vo.userIdx eq board.userIdx}">
+                	<form action="boardWrite.do" method="post">
+               			<button>수정</button>
+               			<input type="hidden" name="board_idx" value="${board.boardIdx}">
+                	</form>
+                	<form action="boardDelete.do" method="post">
+            			<button>삭제</button>
+               			<input type="hidden" name="board_idx" value="${board.boardIdx}">
+            		</form>
+	            </c:if>
             </div>
 
             <div class = "context_table">
@@ -316,21 +329,34 @@ button class > comment-delete{
             </div>
 
         </div>
-</form>
+</div>
 <div class="container-board" id="comment">
-
-	<div id="comment-box">
-	        <input type="text" placeholder="댓글을 작성하세요" name="comment" maxlength="40" style="width:95%; height:50px;" required>
-	         <button type="submit" style="width:5%; height:50px;" >올리기</button>
-	</div><br><br><br>
+	<c:choose>
+		<c:when test="${!empty vo}">
+			<div id="comment-box">
+				<input type="text" placeholder="댓글을 작성하세요" name="comment" maxlength="40" style="width:95%; height:50px;" required>
+				<button type="submit" style="width:5%; height:50px;" >올리기</button>
+			</div><br><br><br>
+		</c:when>
+		<c:otherwise>
+			<div id="comment-box">
+				<input type="text" placeholder="댓글을 작성하려면 로그인하세요" name="comment" maxlength="40" style="width:95%; height:50px;" readonly>
+				<button type="submit" style="width:5%; height:50px;" >올리기</button>
+			</div><br><br><br>
+		</c:otherwise>
+	</c:choose>
    	<hr id = "cline">
     <c:forEach items="${commentList}" var="comment">
     	<div id="com">
-	           ${comment.nickname}<button class="comment-update" value="${comment.commentIdx}">수정</button>
-	           <button class="comment-delete" value="${comment.commentIdx}">삭제</button><br> 
+	           ${comment.nickname}
+	           <c:if test="${vo.userIdx eq comment.userIdx}">
+	               <button class="comment-update" value="${comment.commentIdx}">수정</button>
+	               <button class="comment-delete" value="${comment.commentIdx}">삭제</button>
+	           </c:if>
+	           <br> 
 	           <p class="comment-comment">${comment.comment}</p>
 	           <a class="comment-like" href="#a">
-	           	<img src="${pageContext.request.contextPath}/image/heart.png" width="15" height="15">
+	               <img src="${pageContext.request.contextPath}/image/heart.png" width="15" height="15">
 	           </a>
 	           <span class="like-count">${comment.likes}</span>
 	    	   <hr>	
