@@ -4,77 +4,90 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>골라조</title>
+<title>Insert title here</title>
 <style>
 @font-face {
     src: url("fonts/08SeoulNamsanM_0.ttf"); 
   	font-family: 'SeoulNamsan';
 }
-
-
-*{
-	box-sizing: border-box;
-	font-family: 'SeoulNamsan';
-}
-
-
-h1{
-	font-size: 40px;
-}	
-
-.content{
+	body{
+	 	background-size:cover;
+	 	box-sizing: border-box;
+		font-family: 'SeoulNamsan';
+	  }
+  
+	.wrapper{
+		  margin:270px auto;
+		  display:block;
+		  width:100%; 
+		  max-width:270px;
+		  position:relative;
+		  background:none;
+	  
+	}
+	.taste3{
+		  height:36px;
+		  margin-left:150px;
+		  font-size:30px;
+		  text-align:center;
+		  color:black;
+		  position:relative;
+		  z-index:3;
+		  cursor:pointer;
+		  padding:3spx;
+	}
+	.taste4{
+		  height:36px;
+		  margin-left:150px;
+		  font-size:30px;
+		  text-align:center;
+		  color:black; 
+		  z-index:4;
+		  cursor:pointer;
+		  position:relative;
+		  padding:15px;
+	}
+	.hovers{
+		  position:absolute;
+		  top:3px;
+		  width:80%;
+		  height:40px;
+		  background-color:#f5dedc;
+		  border-radius:40px;
+		  border:2px solid #f5dedc;
+		  z-index:1;
+		  margin-left:110px;
+		  transition:0.5s;
+	}
+	.taste3:hover ~ .hovers{
+		  background-color:#e37479;
+		  border:2px solid #e37479;
+		  transform:translateY(-5%);
+		  
+	}
 	
-	
-	width:400px;
-	height:400px;
-	line-height:500px;
-	margin:0 auto;
-	padding: auto auto;
-	text-align:center;
-	vertical-align:middle;
-}
-
-.choice{
-	margin-top:100px;
-	display:inline-block;
-	line-height:normal;
-	vertical-align:middle;
-	padding:auto auto;
-}
-input[type=button]{
-	width:300px;
-	height:100px;
-	border-radius: 5px;
-	border : none;	
-	font-size : 25px;
-	cursor: pointer;
-}
-
-#taste{
-	 background-color: red;
-	 margin-bottom: 20px;
-	 margin-top: 35px;
-}
-
-#situation{
-	 background-color: rgb(46, 204, 113);
-	 margin-top:20px;
-}
-
-.class{
-	padding: auto auto;
-}
-
+	.taste4:hover ~ .hovers{
+	  background-color:#7eb4e0;
+	  border:2px solid #7eb4e0;
+	  transform:translateY(120%);
+	}
+	#title{
+		left: 50px;
+		position:absolute;
+		top:-150px;
+		font-size: 30px;
+		margin-left: -30%;
+	}	
 </style>
 </head>
 <body>
 <%@ include file="../view/header.jsp" %>	
-	<div class = "content">
-		<div class="choice">
-			<h1>당신의 취향은?</h1>
-			<input type ="button" name="taste" value="동양" id="taste" onclick="location.href='food_taste3.jsp?choice=${param.choice}&taste1=${param.taste1}&taste2=3'">
-			<input type ="button" name="situation" value="서양" id="situation" onclick="location.href='food_taste3.jsp?choice=${param.choice}&taste1=${param.taste1}&taste2=4'">
-		</div>
+	<div class = "wrapper">
+		<div id="title"><h1>당신의 <br>취향<br>은?</h1></div>
+		<div class="taste3" id="taste3" onclick="location.href='food_taste3.jsp?choice=${param.choice}&taste1=${param.taste1}&taste2=3'">동양</div>
+  		<div class="taste4" id="taste4" onclick="location.href='food_taste3.jsp?choice=${param.choice}&taste1=${param.taste1}&taste2=4'">서양</div>
+  
+ 	 			<div class="hovers"></div>
 	</div>
 <%@ include file="../view/footer.jsp" %>	
 </body>

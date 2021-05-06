@@ -11,118 +11,113 @@
     src: url("fonts/08SeoulNamsanM_0.ttf"); 
   	font-family: 'SeoulNamsan';
 }
-
-
-	body{
-
-	 	background-size:cover;
-	 	box-sizing: border-box;
-		font-family: 'SeoulNamsan';
-
-	  }
-  
-	.wrapper{
-	  margin:270px auto;
-	  display:block;
-	  width:100%; 
-	  max-width:270px;
-	  position:relative;
-	  background:none;
+	body {
+ 	 box-sizing:border-box;
+	
 	}
 	
-	.taste{
-	   height:36px;
-	  margin-left:50px;
-	  font-size:18px;
-	  text-align:center;
-	  color:black;
-	  position:relative;
-	  top: -50px;
-	  z-index:3;
-	  cursor:pointer;
-	  padding:10px;
-
-	}
-	.situation{
-	  height:36px;
-	  margin-left:50px;
-	  font-size:18px;
-	  text-align:center;
-	  color:black; 
-	  z-index:4;
-	  cursor:pointer;
-	  position:relative;
-	  top: -25px;
-	  padding:10px;
-	}
-
-	.random{
-
-	height:36px;
-	  margin-left:50px;
-	  font-size:18px;
-	  text-align:center;
-	  color:black;
-	  z-index:4;
-	  cursor:pointer;
-	  position:relative;
-
-	  padding:10px;
-	}
-
-
-	.hovers{
-	  position:absolute;
-	  top:-45px;
-	  width:80%;
-	  height:36px;
-	  background-color:#dedeff;
-	  border-radius:40px;
-	  border:2px solid #dedeff;
-	  z-index:1;
-	  margin-left:55px;
-	  transition:0.5s;
-	}
-
-	.taste:hover ~ .hovers{
-	  background-color:#8282ff;
-	  border:2px solid #8282ff;
-	  transform:translateY(0%);
+	
+	#all{
+	 height: 100%;
+     width: 100%;
+     margin: 0;
+     overflow: hidden;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     font-family: 'SeoulNamsan';
+	  }
 	  
+	.wrapper{
+     width: 680px;
+     position: relative;
+     font-family: 'SeoulNamsan';
 	}
-	.situation:hover ~ .hovers{
-	  background-color:#d25a5a;
-	  border:2px solid #d25a5a;
-	   transform:translateY(230%);
+	
+	.btn {
+    border: none;
+    position: relative;
+    background: none;
+    padding: 28px 70px;
+    display: inline-block;
+    text-transform: uppercase;
+    margin: 20px;
+    color: inherit;
+    letter-spacing: 2px;
+    font-size: 0.3em;
+    outline: none;
+    transition: all 0.4s;
+    cursor: pointer;
+    font-size:30px;
+    font-weight: 470;	
 	}
-	.random:hover ~ .hovers{
-	  background-color:#7ba87b;
-	  border:2px solid #7ba87b;
-	   transform:translateY(450%);
+	.btn:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 04.s;
 	}
-
-	h1{
-		font-size: 40px;
-	}	
-
+	.taste{
+	margin-top: 90px;
+	margin-left: 100px;
+    perspective: 800px;
+    display: inline-block;
+	}
+	.case{
+    perspective: 800px;
+    margin-left: 100px;
+    display: inline-block;
+	}
+	.random{
+    perspective: 800px;
+    margin-left: 100px;
+    display: inline-block;
+	}
+	.btn-3d {
+    color: #fff;
+    display: block;
+    outline: 1px solid transparent;
+    transform-style: preserve-3d;
+	}
 	#hea{
-		text-align:center;
+	 	 font-size: 40px;
+		 text-align: justify;
+	 	 margin-left: 200px;
 	}
-
+	
+	.btn-three {
+     background-color: #1ABC9C;
+	}
+	.btn-three:after {
+     width: 20%;
+     height: 100%;
+     left: -20%;
+     top: 0;
+     background: #16A085;
+     transform-origin:100% 0%;
+     transform: rotateY(-90deg);
+	}
+	
+	.btn-three:hover {
+     transform: rotateY(25deg);   
+	}
 </style>
-</head>
 
+
+</head>
 <body>
 <%@ include file="../view/header.jsp" %>
-<h1 id ="hea">오늘은 어때?</h1>
+
+<div id="all">
+<h1 id ="hea"> 세 개의 <br>기준이 있어요</h1>
 <div class="wrapper">
 	
-  	<div class="taste" id="taste" onclick="location.href='food_taste1.jsp?choice=1'">취향으로</div><br>
-  	<div class="situation" id="situation" onclick="location.href='food_case.jsp?choice=2'">상황으로</div><br>
-  	<div class="random" id="random" onclick="location.href='${pageContext.request.contextPath}/food.do?choice=3'">아무거나</div>
-  
- 	 <div class="hovers"></div>
+	<div class="taste"><button class="btn btn-3d btn-three" onclick="location.href='food_taste1.jsp?choice=1'">취향으로</button></div>
+	<div class="case"><button class="btn btn-3d btn-three" onclick="location.href='food_case.jsp?choice=2'">상황으로</button></div>
+	<div class="random"><button class="btn btn-3d btn-three" onclick="location.href='${pageContext.request.contextPath}/food.do?choice=3'">아무거나</button></div>
+
+</div>
 </div>
 	<%@ include file="../view/footer.jsp" %>
 </body>
-</html>
+</html
