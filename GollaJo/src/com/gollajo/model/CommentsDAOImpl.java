@@ -195,7 +195,7 @@ public class CommentsDAOImpl implements CommentsDAO {
 			
 			System.out.println(ps.executeUpdate()+" row DELETE OK!!");
 		} catch(SQLException e) {
-			
+			e.printStackTrace();
 		}finally {
 			closeAll(ps, conn);
 		}

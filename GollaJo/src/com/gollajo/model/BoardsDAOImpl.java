@@ -166,7 +166,9 @@ public class BoardsDAOImpl implements BoardsDAO {
 			ps.setString(1, boardIdx);
 			
 			System.out.println(ps.executeUpdate()+" row DELETE OK!!");
-		} finally {
+		} catch(Exception e){
+			e.printStackTrace();
+		}finally {
 			closeAll(ps, conn);
 		}
 	}

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <style>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0">
 @font-face {
     src: url("fonts/08SeoulNamsanM_0.ttf"); 
   	font-family: "SeoulNamsanM";
@@ -75,12 +76,21 @@ button:hover {
 	
 	function idCheck() {
 		var id = document.registerForm.id.value;
+		var specialCheck = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+		var koreanCheck = /[a-zA-Z]/;
 		resultView = document.getElementById("idCheckResult");
 		if (id.length < 5 || id.length > 20) {
 			resultView.innerHTML = "<font color='red'> 아이디는 5~20 글자!!</font>";
 			return;
 		}
-		
+		else if (specialCheck.test(id)) {
+			resultView.innerHTML = "<font color='red'> 특수문자 불가능 </font>";
+			return;
+		}
+		else if (!koreanCheck.test(id)) {
+			resultView.innerHTML = "<font color='red'> 한글 불가능 </font>";
+			return;
+		}
 		// 4글자 이상이면 비동기통신으로 로직을 전개시킨다.
 		xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = idCallback;
@@ -155,7 +165,7 @@ button:hover {
     
     
     <div class="clearfix">
-      <button type="Login" class="signupbtn">로그인</button>
+      <button type="Login" class="signupbtn">회원가입</button>
     </div>
   </div>
 </form>

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>골라조</title>
 <style>
 @font-face {
     src: url("fonts/08SeoulNamsanM_0.ttf"); 
@@ -110,6 +110,7 @@ h1{
 <%@ include file="../view/header.jsp" %>
 
 <div class = "content">
+	<h1 align="center">나의 음식 선택!</h1>
 	<div id="piechart" style="width: 600px; height: 500px;"></div>
 </div>
 

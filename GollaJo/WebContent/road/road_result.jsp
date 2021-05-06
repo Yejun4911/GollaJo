@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0"> 
+<title>골라조</title>
 
 
 <style>
@@ -49,6 +50,23 @@ h1{
 }
 #search{
 	text-align:center;
+}
+
+button{
+	width:100%;
+	margin-top:20px;
+  	height: 45px;
+  	font-size: 14px;
+  	text-transform: uppercase;
+  	letter-spacing: 2.5px;
+  	font-weight: 500;
+  	color: black;
+ 	background-color: white;
+  	border: 1px solid gray;
+  	border-radius: 45px;
+  	transition: all 0.3s ease 0s;
+  	cursor: pointer;
+  	outline: none;
 }
 </style>
 <body>

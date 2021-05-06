@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style>
 @font-face {
     src: url("fonts/08SeoulNamsanM_0.ttf"); 
@@ -12,68 +13,116 @@
 }
 
 
-*{
-	box-sizing: border-box;
-	font-family: 'SeoulNamsan';
-}
+	body{
 
+	 	background-size:cover;
+	 	box-sizing: border-box;
+		font-family: 'SeoulNamsan';
 
-h1{
-	font-size: 40px;
-}	
-
-.content{
+	  }
+  
+	.wrapper{
+	  margin:270px auto;
+	  display:block;
+	  width:100%; 
+	  max-width:270px;
+	  position:relative;
+	  background:none;
+	}
 	
-	
-	width:400px;
-	height:400px;
-	line-height:500px;
-	margin:0 auto;
-	padding: auto auto;
-	text-align:center;
-	vertical-align:middle;
-}
+	.taste{
+	   height:36px;
+	  margin-left:50px;
+	  font-size:18px;
+	  text-align:center;
+	  color:black;
+	  position:relative;
+	  top: -50px;
+	  z-index:3;
+	  cursor:pointer;
+	  padding:10px;
 
-.choice{
-	margin-top:100px;
-	display:inline-block;
-	line-height:normal;
-	vertical-align:middle;
-	padding:auto auto;
-}
-input[type=button]{
-	width:300px;
-	height:100px;
-	border-radius: 5px;
-	border : none;	
-	font-size : 25px;
-	cursor: pointer;
-	margin : 30px;
-}
+	}
+	.situation{
+	  height:36px;
+	  margin-left:50px;
+	  font-size:18px;
+	  text-align:center;
+	  color:black; 
+	  z-index:4;
+	  cursor:pointer;
+	  position:relative;
+	  top: -25px;
+	  padding:10px;
+	}
 
-#taste{
-	 background-color: red;
-	
-}
+	.random{
 
-#situation{
-	 background-color: rgb(46, 204, 113);
-	 
-}
+	height:36px;
+	  margin-left:50px;
+	  font-size:18px;
+	  text-align:center;
+	  color:black;
+	  z-index:4;
+	  cursor:pointer;
+	  position:relative;
 
+	  padding:10px;
+	}
+
+
+	.hovers{
+	  position:absolute;
+	  top:-45px;
+	  width:80%;
+	  height:36px;
+	  background-color:#dedeff;
+	  border-radius:40px;
+	  border:2px solid #dedeff;
+	  z-index:1;
+	  margin-left:55px;
+	  transition:0.5s;
+	}
+
+	.taste:hover ~ .hovers{
+	  background-color:#8282ff;
+	  border:2px solid #8282ff;
+	  transform:translateY(0%);
+	  
+	}
+	.situation:hover ~ .hovers{
+	  background-color:#d25a5a;
+	  border:2px solid #d25a5a;
+	   transform:translateY(230%);
+	}
+	.random:hover ~ .hovers{
+	  background-color:#7ba87b;
+	  border:2px solid #7ba87b;
+	   transform:translateY(450%);
+	}
+
+	h1{
+		font-size: 40px;
+	}	
+
+	#hea{
+		text-align:center;
+	}
 
 </style>
 </head>
+
 <body>
-	<%@ include file="../view/header.jsp" %>
-	<div class = "content">
-		<div class="choice">
-			<h1>오늘 뭐 먹지?</h1>
-			<input type ="button" name="taste" value="취향으로 선택" id="taste" onclick="location.href='food_taste1.jsp?choice=1'">
-			<input type ="button" name="situation" value="상황으로 선택" id="situation" onclick="location.href='food_case.jsp?choice=2'">
-			<input type ="button" name="random" value="아무거나" id="random" onclick="location.href='${pageContext.request.contextPath}/food.do?choice=3'">
-		</div>
-	</div>
+<%@ include file="../view/header.jsp" %>
+<h1 id ="hea">오늘은 어때?</h1>
+<div class="wrapper">
+	
+  	<div class="taste" id="taste" onclick="location.href='food_taste1.jsp?choice=1'">취향으로</div><br>
+  	<div class="situation" id="situation" onclick="location.href='food_case.jsp?choice=2'">상황으로</div><br>
+  	<div class="random" id="random" onclick="location.href='${pageContext.request.contextPath}/food.do?choice=3'">아무거나</div>
+  
+ 	 <div class="hovers"></div>
+</div>
 	<%@ include file="../view/footer.jsp" %>
 </body>
 </html>

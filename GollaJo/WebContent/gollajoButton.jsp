@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0">
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>골라조</title>
 
 <style type="text/css">
 @font-face {
@@ -24,7 +25,7 @@ body, button {
 }
 body {
 	width:100%;
-	background: linear-gradient(110deg, white 60%, skyblue 60%);
+	background: linear-gradient(110deg, white 60%, gray 60%);
 }
 button {
 	cursor: pointer;
@@ -131,7 +132,6 @@ button {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding: 0.75em 1.5em 0.75em 3.75em;
 	text-align: center;
 	width: 26em;
 	height: 6em;
@@ -162,7 +162,8 @@ button {
 	animation: fallOut 0.7s ease-in forwards;
 }
 .opened .fc-fortune {
-	animation: foldOut 0.7s ease-in forwards;
+	/* animation: foldOut 0.7s ease-in forwards; */
+	animation: fallOut 0.7s ease-in forwards;
 }
 
 /* Animations */
@@ -189,7 +190,7 @@ button {
 		transform: translateX(-14em) rotate(50deg);
 	}
 	to {
-		opacity: 3;
+		opacity: 1;
 		transform: translateX(-14em) rotate(50deg);
 	}
 }
@@ -219,7 +220,7 @@ button {
 		opacity: 1;
 	}
 	60%, to {
-		opacity: 0;
+		opacity: 3;
 		left: calc(50% - 3em);
 		width: 6em;
 		transform: translateY(24em);

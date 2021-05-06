@@ -132,14 +132,14 @@ $(function() {
     })
     $('.comment-delete').click(function() {
     	var commentIdx = $(this).attr('value');
-    	var tr = $(this).parent().parent();
+    	var div = $(this).parent();
     	userIdx = ${vo.userIdx};
     	$.ajax({
     		type: "post",
     		url: "commentDelete.do",
     		data: { "comment_idx": commentIdx },
     		success: function(result) {
-    			tr.remove();
+    			div.remove();
     		}
     	});
     })

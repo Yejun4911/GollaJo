@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0">
 <style>
 @font-face {
     src: url("fonts/08SeoulNamsanM_0.ttf"); 

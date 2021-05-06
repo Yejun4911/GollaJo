@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>골라조</title>
 <style type="text/css">
 	@font-face {
    	src: url("fonts/08SeoulNamsanL_0.ttf"); 
@@ -52,10 +52,13 @@ html,body {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		background:url('/GollaJo/image/black.jpg') 100%;
+		background-size:cover;
+		opacity:0.7;
+		border-radius:30px;
 	}
 	.container{
 		margin:0 auto;
-		background-color:#282828;
 		border-radius:20px;
 		margin:20px;
 	}
@@ -95,7 +98,9 @@ html,body {
 		margin-bottom:5px;
 		margin-left:10px;
 	}
-	
+	h1{
+		font-family: 'Recipekorea';
+	}
 </style>	
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <script type="javascript">

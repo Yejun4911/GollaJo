@@ -4,11 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0">
+<title>골라조</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 
 <script>
+$(function(){
+	$('#submit').click(function(){
+		var cnt=$('input[name=place1]').length;
+		if(cnt==0){
+			alert("사람을 더 추가 해주세용");
+			return false;
+		}	
+	})
+});
 var arr = new Array();
 $(function(){
 	$('#send').click(function(){
@@ -44,7 +54,7 @@ $(document).on("click", "#btn", function(){
     console.log(temp);
     console.log(arr[temp]);
 	$('#pList').append("<img alt="+arr[temp].place_name+" src='${pageContext.request.contextPath}/image/person.png' id='person'>");
-	$('#pList').append('<input type="hidden" name="place" value='+arr[temp].x+','+arr[temp].y+'>');
+	$('#pList').append('<input type="hidden" name="place1" value='+arr[temp].x+','+arr[temp].y+'>');
 
 });
 
@@ -92,7 +102,7 @@ input[type=button]{
 	transform: translate(-50%, -50%);
 	border:3px solid #ccc; 
 	border-radius: 5px;"
-	background-color:gray;
+	background-color:white;
 	
 }
 input[type=text]{
@@ -140,7 +150,7 @@ input[type=text]{
 	margin-top:5px;
 	border:none;
 	cursor:pointer;
-	
+	background-color: white;
 }
 #list button:hover{
 	border:1px solid black;

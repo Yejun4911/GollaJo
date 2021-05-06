@@ -11,7 +11,7 @@ public class RoadController implements Controller {
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, Exception {
 		String path="/road/road_result.jsp";
-		String[] arr = request.getParameterValues("place");
+		String[] arr = request.getParameterValues("place1");
 		double x=0.0;
 		double y=0.0;
 		

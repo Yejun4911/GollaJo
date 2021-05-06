@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>골라조</title>
 <style type="text/css">
 footer{	
 		position:fixed; 
@@ -14,10 +14,8 @@ footer{
 	    width: 100%;
 		text-align:center;
 		margin-bottom:0px;
-		padding-bottom:0px;
-		background-color:gray;
-		margin-left:20px;
-		margin-right:20px;
+		padding-bottom:5px;
+		background-color:#cccccc;
 	}
 #line{
 	
@@ -27,7 +25,7 @@ footer{
 <body>
 
 <footer>
-    	<p>Mini Project</p>
+    	<p>Copyright &copy; GollaJo.  All Reserved.</p>
 </footer>
 </body>
 </html>
