@@ -52,7 +52,7 @@ html,body {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		background:url('/GollaJo/image/black.jpg') 100%;
+		background:url('/image/black.jpg') 100%;
 		background-size:cover;
 		opacity:0.7;
 		border-radius:30px;
@@ -110,7 +110,7 @@ html,body {
 <body>
 <div class="container">
 		<header>
-			<a href="/GollaJo/index.jsp"><img src="/GollaJo/image/logo2.png" id="logo"></a>
+			<a href="/index.jsp"><img src="/image/logo2.png" id="logo"></a>
 			<nav>
 				<ul>
 				<c:choose>
@@ -118,8 +118,8 @@ html,body {
 						<li style="padding-left:100px;"><a href="logout.do">로그아웃</a></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/GollaJo/login/signIn.jsp">로그인</a></li>
-						<li><a href="/GollaJo/login/signUp.jsp">회원가입</a></li>
+						<li><a href="/login/signIn.jsp">로그인</a></li>
+						<li><a href="/login/signUp.jsp">회원가입</a></li>
 					</c:otherwise>	
 				</c:choose>
 				</ul>			

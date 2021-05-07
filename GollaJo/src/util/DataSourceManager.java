@@ -25,6 +25,7 @@ public class DataSourceManager {
 			
 			System.out.println("DataSource Lookup!!");
 		}catch(NamingException e){
+			e.printStackTrace();
 			System.out.println(" <<<<< DataSource Lookup ERROR!! >>>>>");
 		}
 		
