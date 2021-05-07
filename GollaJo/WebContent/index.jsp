@@ -184,7 +184,7 @@ figure.snip1200.hover p {
 	      <h2>골라조 <span> 게시판</span></h2>
 	    </div>
 	  </figcaption>
-	  <a href="boardList.do?page=1"></a>
+	  <a href="${pageContext.request.contextPath}/boardList.do?page=1"></a>
 	</figure>
 	</div>
 </div>

@@ -129,7 +129,11 @@ h1 {
 				<c:forEach items="${boardList}" var="board">
 					<tr>
 						<td>${board.boardIdx}</td>
-						<td><a href="boardDetail.do?board_idx=${board.boardIdx}"><font color="black"><b>${board.title}</b></font></a></td>
+						<td>
+							<a href="boardDetail.do?board_idx=${board.boardIdx}">
+								<font color="black"><b>${board.title}</b></font>
+							</a>
+						</td>
 						<td>${board.nickname}</td>
 						<td>${board.registerDatetime}</td>
 						<td>${board.viewCount}</td>

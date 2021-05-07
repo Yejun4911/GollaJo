@@ -153,7 +153,7 @@ button:hover {
 <%@ include file="../view/header.jsp" %>
 <form action="${pageContext.request.contextPath}/signUp.do" method="post" name="registerForm" onsubmit="return pwd2Check()">
   <div class="content">
-  	<h2>로그인</h2><hr>
+  	<h2>회원가입</h2><hr>
     <label for="아이디"><b>아이디</b></label><span id="idCheckResult"></span>
     <input type="text" placeholder="아이디" name="id" required onkeyup="idCheck()">
     <label for="비밀번호"><b>비밀번호</b></label><span id="pwdCheckResult"></span>
