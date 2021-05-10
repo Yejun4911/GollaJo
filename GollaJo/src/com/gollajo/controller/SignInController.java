@@ -15,7 +15,7 @@ public class SignInController implements Controller {
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, Exception {
-		String path = "signIn.jsp";
+		String path = "login/signIn.jsp";
 		String errMsg = "false";
 		
 		String id = request.getParameter("id");

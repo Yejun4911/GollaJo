@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>골라조</title>
 
 <style>
 @font-face {
@@ -120,4 +120,4 @@
 </div>
 	<%@ include file="../view/footer.jsp" %>
 </body>
-</html
+</html>

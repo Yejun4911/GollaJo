@@ -3,7 +3,7 @@
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0">
 <!DOCTYPE html>
-
+<title>골라조 게시판</title>
 
 <style type="text/css">
 @font-face {

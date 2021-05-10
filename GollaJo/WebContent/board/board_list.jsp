@@ -8,8 +8,7 @@
 <meta charset="UTF-8">
 
 
-
-<title>Insert title here</title>
+<title>골라조 게시판</title>
 <style>
 @font-face {
     src: url("fonts/08SeoulNamsanM_0.ttf"); 
