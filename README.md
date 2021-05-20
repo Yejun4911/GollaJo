@@ -31,12 +31,19 @@
 # 개요
 ### 1. 개발환경
 
+S/W
 | 개발환경 | 버전  |
 |----|----------|
 |jQuery|3.6|
 |Java(JDK)|1.8|
 |Tomcat|8.5|
 |MySQL|8.0|
+
+INFRA
+| 개발환경 | 버전  |
+|----|----------|
+|AWS EC2 Ubuntu|16.04|
+|Nginx||
 
 ### 2. Architecture
 ![image](https://user-images.githubusercontent.com/67588446/118913073-bedd3100-b963-11eb-9737-8d6cbad749f4.png)
