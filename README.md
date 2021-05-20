@@ -14,23 +14,32 @@
 
 ### 2. 웹사이트
 ### 링크 : [GollaJo.shop](https://www.gollajo.shop/)
-![Main](https://user-images.githubusercontent.com/61110132/118910003-ccdc8300-b95e-11eb-8205-0bcc43740d9f.PNG)
+![image](https://user-images.githubusercontent.com/67588446/118912629-057e5b80-b963-11eb-836a-9e2b096cb051.png)
 
 
 # 프로젝트 총평
-### 피드백
+### 1. 피드백
   *  음식을 취향으로 추천받을 경우 DB내부에 음식 종류가 약 150개 정도이므로 추천이 포괄적일 수 밖에 없었음. 
      추후에 DB와 구체적이고 추가적인 선택지를 추가, 보강하여 업데이트 한다면 더욱 확실한 결과 도출이 가능할 것으로 예상됨.
   *  중간지점 길찾기 할때 알고리즘과 프로젝트 전반적인 디테일이 부족함.
   *  가끔 몇 개의 페이지에서 내용이 많지 않은데도 불구하고 스크롤이 생성되는 등 약간의 허점이 발견됨.
   *  완벽한 프론트와 벡엔드 구현을 위해 실력을 필요
   *  프론트 작업 시 원하는 방향대로 되지 않아 약간의 현실적인 타협이 불가피했었던 점.
-### 기대효과
+### 2. 기대효과
   *  추후 완벽하게 배포하였을 경우 결정을 어려워하는 사람들에게 식사 메뉴 선택, 친구와 만날 장소 선택, 실행 유무 결정, 커뮤니티 공간 등 다양한 방면으로 널리 활용될 것으로 기대됨.
 
-# Architecture
-### MVC 패턴
-![MVC](https://user-images.githubusercontent.com/77288777/118912098-3ca03d00-b962-11eb-9a66-65d33a121840.PNG)
+# 개요
+### 1. 개발환경
+
+| 개발환경 | 버전  |
+|----|----------|
+|jQuery|3.6|
+|Java(JDK)|1.8|
+|Tomcat|8.5|
+|MySQL|8.0|
+
+### 2. Architecture
+![image](https://user-images.githubusercontent.com/67588446/118913073-bedd3100-b963-11eb-9737-8d6cbad749f4.png)
 
 # 분석
 <details>
@@ -83,7 +92,9 @@ B : Board <br>
 | B-106| 댓글 삭제| 댓글을 삭제한다.|
 | B-106| 댓글 좋아요| 댓글을 좋아요한다.|
 
-### 2. Usecase Diagram    
+### 2. Usecase
+    * [UseCaseScenerio](https://github.com/EncoreWebProject4/WebProject/wiki/01_Usecase-Scenerio)
+    * [UseCaseDiagram](https://github.com/EncoreWebProject4/WebProject/wiki/03_Usecase-Diagram)
 
   </div>
 </details>
@@ -93,14 +104,15 @@ B : Board <br>
   <summary>상세 내용 확인</summary>
   <div markdown="1">
     
-### 1. S/W
-![image](https://user-images.githubusercontent.com/67588446/111156860-8de62600-85d9-11eb-8c2c-d820330bb290.png)
-### 2. H/W
-![image](https://user-images.githubusercontent.com/67588446/111154512-a4d74900-85d6-11eb-9773-dd0cada70bfb.png)
-### 3. 서비스흐름도
-![image](https://user-images.githubusercontent.com/67588446/111154553-ae60b100-85d6-11eb-968f-a947ceb3ea2c.png)
-### 4. ERD
-![image](https://user-images.githubusercontent.com/67588446/111985595-24719480-8b50-11eb-8958-df8a0c61104a.png)
+### 1. DB Modeling
+![image](https://user-images.githubusercontent.com/67588446/118913309-28f5d600-b964-11eb-9154-c55936aa3fdf.png)
+
+### 2. Front UI
+링크 : [Front UI](https://www.figma.com/file/t0e6q0jOrxtnGzL7RSpYdC/%EA%B3%A8%EB%9D%BC%EC%A1%B0_ver_0)
+    
+### 3. Logic
+링크 : [Business Logic](https://github.com/EncoreWebProject4/WebProject/wiki/04_Business-Logic)
+
 
   </div>
 </details>
@@ -133,37 +145,6 @@ B : Board <br>
   
   </div>
 </details>
-
-
-
-
-
-## [SRS](https://github.com/EncoreWebProject4/WebProject/wiki/02_SRS)
-
-
-## [UseCaseDiagram](https://github.com/EncoreWebProject4/WebProject/wiki/03_Usecase-Diagram)
-
-
-## [DB Modeling](https://github.com/EncoreWebProject4/WebProject/wiki/05_DB-Modeling)
-
-
-## [Front UI](https://www.figma.com/file/t0e6q0jOrxtnGzL7RSpYdC/%EA%B3%A8%EB%9D%BC%EC%A1%B0_ver_0)
-
-## [Business Logic](https://github.com/EncoreWebProject4/WebProject/wiki/04_Business-Logic)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### [회의록](https://github.com/EncoreWebProject4/WebProject/issues)
 
