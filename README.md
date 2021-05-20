@@ -30,7 +30,7 @@
 
 # Architecture
 ### MVC 패턴
-이미지
+![MVC](https://user-images.githubusercontent.com/77288777/118912098-3ca03d00-b962-11eb-9a66-65d33a121840.PNG)
 
 # 분석
 <details>
