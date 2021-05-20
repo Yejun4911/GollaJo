@@ -62,5 +62,3 @@
 ### 3. Logic
  * [Business Logic](https://github.com/EncoreWebProject4/WebProject/wiki/04_Business-Logic)
 
-### [회의록](https://github.com/EncoreWebProject4/WebProject/issues)
-
