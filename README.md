@@ -1,6 +1,8 @@
 # Encore WebProject 4조_골라조
 ### 2021 encore playdata web project - GollaJo
-  
+## 발표자료 ##
+[GoolaJo WebProject_복사본_복사본_복사본.pdf](https://github.com/Yejun4911/GollaJo/files/7451583/GoolaJo.WebProject_._._.pdf)
+
 # 소개
 ### 1. 소개
 #### 의사 결정 도구
